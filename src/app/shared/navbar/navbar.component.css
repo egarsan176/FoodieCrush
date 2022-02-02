@@ -11,5 +11,8 @@
 }
 
 .logo {
-  width: 60%;
+  width: 40%;
+}
+.navbar-brand {
+  margin-right: 0 !important;
 }

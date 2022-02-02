@@ -1,42 +1,50 @@
 
-<nav class="navbar navbar-expand-sm colorGreenP navbar-dark">
+<!-- navbar-expand-sm indicar el tamaño a partir del cual la barra se mostrará de forma expandida -->
+<nav class="navbar navbar-expand-sm colorGreenP navbar-dark py-0"> <!--py-0 para quitar el padding top-bottom que trae navbar por defecto-->
     <div class="container-fluid">
 
       <a class="navbar-brand" href="#">
-        <img src="../../../assets/img/logo.svg" class="rounded-pill logo" > 
+        <img src="../../../assets/img/logo.svg" class="logo" > 
       </a>
-      
+      <!-- button se mostrará únicamente cuando el menú se colapse y se ocultará cuando el menú aparezca expandido     -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon  "></span>
+        <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
 
         <ul class=" nav navbar-nav">
           <li class="nav-item">
-            <a class="nav-link text-black" routerLinkActive="active"  routerLink="/home">Inicio</a>
+            <a class="nav-link text-black" routerLinkActive="active"  routerLink="/home"><strong>Inicio</strong></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link text-black" routerLinkActive="active" routerLink="">Recetas</a>
+            <a class="nav-link text-black" routerLinkActive="active" routerLink=""><strong>Recetas</strong></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-black" routerLinkActive="active" routerLink="">Publicar</a>
+            <a class="nav-link text-black" routerLinkActive="active" routerLink=""><strong>Publicar</strong></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-black" routerLinkActive="active" routerLink="">Sobre mí</a>
+            <a class="nav-link text-black" routerLinkActive="active" routerLink=""><strong>Sobre mí</strong></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-black" routerLinkActive="active" routerLink="">Contacto</a>
+            <a class="nav-link text-black" routerLinkActive="active" routerLink=""><strong>Contacto</strong></a>
           </li>
-
-          <form class="d-flex searchAling">
-            <input class="form-control me-2" type="text" placeholder="Search">
+          
+          <!-- <form class="d-flex searchAling">
             <li class="nav-item">
-              <a class="nav-link text-black" routerLinkActive="active" routerLink="/login"><i class="fas fa-user-circle" ></i></a>
-            </li> 
-          </form> 
-
+              <a class="nav-link text-black" routerLinkActive="active" routerLink="/login"><i class="fas fa-user-circle"></i></a>
+            </li>
+            <input class="form-control" type="text" placeholder="Buscar">
+            <button class="btn colorYellowP" type="button">Buscar</button>
+          </form>  -->
+          
         </ul>
-
+        
       </div>
+      <a class="nav-link text-black " routerLinkActive="active" routerLink="/login"><i class="fas fa-user-circle"></i></a>
+     
+      
+      
     </div>
+    
   </nav>

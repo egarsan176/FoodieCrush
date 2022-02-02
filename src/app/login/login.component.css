@@ -1,0 +1,13 @@
+/* tablet --> dispositivos con anchura mínima de 481 y máxima de 810*/
+@media screen and (min-width: 481px) and (max-width: 810px) {
+  .imgLogin {
+    width: 60%;
+  }
+}
+
+/* ordenador --> dispositivos con anchura mínima de 811 y máxima de 1500 */
+@media screen and (min-width: 811px) and (max-width: 1500px) {
+  .imgLogin {
+    width: 50%;
+  }
+}

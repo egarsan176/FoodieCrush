@@ -1,34 +1,23 @@
 <div class="row">
     <!-- en pantallas xs, sm ocupa todo el espacio, en pantallas md, lg y xl ocupa la mitad -->
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 hComponent100">
 
-        <div class="page-holder align-items-center py-4 bg-gray-100 vh-100">
+        <div class="align-items-center py-2 bg-gray-100">
             <div class="container">
-              <div class="row align-items-center">
-                 <div class="col-lg-6 px-lg-4" ></div> <!--*ngIf="userlogin"  -->
+              
                   <div class="card">
-                    <div class="card-header px-lg-5">
-                      <div class="card-heading text-primary">Foodie Crush Login</div>
+                     <div class="card-header colorYellowLightP m-2"> <!--px padding left-rigth pantalla lg -->
+                      <div class="card-heading text-center">Foodie Crush Login</div>
                     </div>
-                    <div class="card-body p-lg-5">
-                      <h3 class="mb-4">Hola, ¡Bienvenid@ de nuevo! 👋👋</h3>
-                      <p class="text-muted text-sm mb-5">Sabemos que estás impaciente por compartir tus nuevos descubrimientos culinarios con la comunidad ... ¡Vamos!</p>
+                    <div class="card-body">
+                      <h3 class="mb-2">Hola, ¡Bienvenid@ de nuevo!👋👋</h3>
+                      <p class="text-muted text-sm mb-1 d-none d-md-block d-sm-block">Sabemos que estás impaciente por compartir tus nuevos descubrimientos culinarios con la comunidad ... ¡Vamos!</p>
                       
                       <form (ngSubmit)="login()"
                       #miFormulario="ngForm">
 
                         <div class="form-floating mb-3">
-                          <!-- <input class="form-control" id="floatingInput" type="email" [ngModel]="initForm.email" placeholder="email" required email> -->
-                          <input type="email" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="initForm.email" required>
-      
-                            <div class="text-danger" *ngIf="miFormulario.controls['email'].dirty && miFormulario.controls['email'].invalid">
-                                <p *ngIf="miFormulario.controls['email'].errors?.['required']">
-                                El campo email es obligatorio
-                                </p>
-                                <p *ngIf="miFormulario.controls['email'].errors?.['pattern']">
-                                No es un email válido
-                                </p>
-                            </div>
+                          <input class="form-control" id="floatingInput" type="email" [ngModel]="initForm.email" placeholder="email" required email>
                           <label for="floatingInput">Email</label>
                         </div>
 
@@ -42,22 +31,30 @@
                           <label class="form-check-label" for="remember">Recuérdame</label>
                         </div>
 
-                        <button class="btn btn-primary" type="button">ENVIAR</button>
+                        <button class="btn colorPurpleP" type="button">ENVIAR</button>
                       </form>
 
                     </div>
-                    <div class="card-footer px-lg-5 py-lg-4">
-                      <div class="text-sm text-muted">¿Todavía no tienes una cuenta? <a routerLink="/register">Regístrate</a></div>
+                    <div class="card-footer colorYellowLightP m-2">  <!--py padding top-bottom pantalla lg -->
+                      <div class="text-sm text-muted">
+                        ¿Todavía no tienes una cuenta? 
+                        <a routerLink="/register">Regístrate aquí</a>
+                      </div>
                     </div>
+
                   </div>
                 </div>
                 
             </div>
+      </div>
 
+
+    <div class="col-12 col-md-6 d-none d-md-block d-sm-block text-center hComponent100">  <!-- para que no se muestre la imagen en móvil -->
+
+      <div class="py-2">
+        <img src="../../assets/img/pagLogin.jpg" alt="" class="img-thumbnail img-responsive imgLogin">
+      </div>
+    
     </div>
 
-    <div class="col-12 col-md-6 d-none d-md-block d-sm-block">  <!-- no se muestra en móvil-->
-
-    </div>
-
-</div>
+</div> 

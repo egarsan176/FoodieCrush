@@ -21,3 +21,18 @@
 .colorYellowLightP {
   background-color: #f9e79f;
 }
+
+/* ALTURAS */
+
+.hComponent100 {
+  height: 100%;
+  min-height: 100vh;
+}
+
+/* tablet --> dispositivos con anchura mínima de 481 y máxima de 810*/
+/* @media screen and (min-width: 481px) and (max-width: 810px) {
+  .hComponent100 {
+    height: 100%;
+    min-height: 100vh;
+  }
+} */
