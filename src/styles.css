@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* GUÍA DE COLORES */
+
+.colorGreenP {
+  background-color: #a9dfbf;
+}
+
+.colorPurpleP {
+  background-color: #c39bd3;
+}
+
+.colorPinkP {
+  background-color: #f5b7b1;
+}
+
+.colorYellowP {
+  background-color: #f7dc6f;
+}
+
+.colorYellowLightP {
+  background-color: #f9e79f;
+}

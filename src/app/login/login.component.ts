@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  @ViewChild('miFormulario') miFormulario!: NgForm;
+
+  initForm = {
+    email: 'name@example.com',
+    password: 123456
+  }
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  login(){}
 }
