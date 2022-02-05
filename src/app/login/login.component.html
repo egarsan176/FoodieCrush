@@ -1,60 +1,42 @@
 <div class="row">
-    <!-- en pantallas xs, sm ocupa todo el espacio, en pantallas md, lg y xl ocupa la mitad -->
-    <div class="col-12 col-md-6 hComponent100">
-
-        <div class="align-items-center py-2 bg-gray-100">
-            <div class="container">
-              
-                  <div class="card">
-                     <div class="card-header colorYellowLightP m-2"> <!--px padding left-rigth pantalla lg -->
-                      <div class="card-heading text-center">Foodie Crush Login</div>
-                    </div>
-                    <div class="card-body">
-                      <h3 class="mb-2">Hola, ¡Bienvenid@ de nuevo!👋👋</h3>
-                      <p class="text-muted text-sm mb-1 d-none d-md-block d-sm-block">Sabemos que estás impaciente por compartir tus nuevos descubrimientos culinarios con la comunidad ... ¡Vamos!</p>
-                      
-                      <form (ngSubmit)="login()"
-                      #miFormulario="ngForm">
-
-                        <div class="form-floating mb-3">
-                          <input class="form-control" id="floatingInput" type="email" [ngModel]="initForm.email" placeholder="email" required email>
-                          <label for="floatingInput">Email</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                          <input class="form-control" id="floatingPassword" type="password" [ngModel]="initForm.password" placeholder="Password" required>
-                          <label for="floatingPassword">Password</label>
-                        </div>
-
-                        <div class="form-check mb-3">
-                          <input class="form-check-input" type="checkbox" name="remember" id="remember">
-                          <label class="form-check-label" for="remember">Recuérdame</label>
-                        </div>
-
-                        <button class="btn colorPurpleP" type="button">ENVIAR</button>
-                      </form>
-
-                    </div>
-                    <div class="card-footer colorYellowLightP m-2">  <!--py padding top-bottom pantalla lg -->
-                      <div class="text-sm text-muted">
-                        ¿Todavía no tienes una cuenta? 
-                        <a routerLink="/register">Regístrate aquí</a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-                
+  <div class="col-lg-6">
+    <div class="m-3">
+      <div class="card">
+        <div class="card-header colorYellowP m-2">
+          <div class="card-heading text-center">Foodie Crush Login</div>
+        </div>
+        <div class="card-body">
+          <h5 class="mb-2">
+            Hola, ¡Bienvenid@ de nuevo!👋👋
+          </h5>
+          <p class="text-muted text-sm mb-1 d-none d-md-block d-sm-block">Sabemos que estás impaciente por compartir tus nuevos descubrimientos culinarios con la comunidad ... ¡Adelante cocinillas!</p>
+          <form (ngSubmit)="login()" #miFormulario="ngForm">
+            <div class="form-floating mb-3">
+              <input class="form-control" id="floatingInput" type="email" [ngModel]="initForm.email" placeholder="email" required email>
+              <label for="floatingInput">Email</label>
             </div>
-      </div>
-
-
-    <div class="col-12 col-md-6 d-none d-md-block d-sm-block text-center hComponent100">  <!-- para que no se muestre la imagen en móvil -->
-
-      <div class="py-2">
-        <img src="../../assets/img/pagLogin.jpg" alt="" class="img-thumbnail img-responsive imgLogin">
-      </div>
-    
+            <div class="form-floating mb-3">
+              <input class="form-control" id="floatingPassword" type="password" [ngModel]="initForm.password" placeholder="Password" required>
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="remember" id="remember">
+              <label class="form-check-label" for="remember">Recuérdame</label>
+            </div>
+            <button class="btn colorPurpleP" type="button">ENVIAR</button>
+          </form>
+        </div>
+        <div class="card-footer colorYellowP m-2">  
+          <div class="text-sm text-muted">
+            ¿Todavía no tienes una cuenta? 
+            <a routerLink="/register">Regístrate aquí</a>
+          </div>
+        </div>
+      </div> 
     </div>
+  </div>
+  <div class="col-lg-6 text-center m-auto pb-2">
+    <img src="../../assets/img/pagLogin.jpg" alt="" class="img-thumbnail img-responsive imgLogin">
+  </div>
+</div>
 
-</div> 

@@ -1,22 +1,22 @@
+
 <div class="row py-0">
+    <!-- navbar que se muestra siempre -->
+    <app-navbar></app-navbar>
+</div>
 
-    <div class="col-12">
-        <!-- navbar que se muestra siempre -->
-        <app-navbar></app-navbar>
-    </div>
-
+<div class="row py-0">
     <div class="col-12 text-center mt-2">
         <!-- imagen nombre logo que se muestra siempre -->
-        <img src="../assets/img/logo_small.png" width="15%" alt="">
+        <img src="../assets/img/logo_small.png" width="15%" class="imagenInicio">
     </div>
+</div>
 
-    <div class="col">
-        <!-- se cargan los distintos componentes -->
-        <router-outlet></router-outlet>
-    </div>
- 
+    <!-- se cargan los distintos componentes -->
+    <router-outlet></router-outlet>
+
+<div class="row py-0">
     <!-- footer -->
-    <div class="col-12 text-center footer colorGreenP navbar-fixed-bottom p-1">
-        Desarrollado por Estefanía García
-    </div>
+    <footer class="col-12 text-center colorPinkP p-1">
+    Desarrollado por Estefanía García
+    </footer>
 </div>
