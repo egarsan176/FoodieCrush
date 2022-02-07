@@ -1,5 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from '../services/loginService';
+import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Usuario } from '../interfaces/interface';
 
 @Component({
   selector: 'app-login',
@@ -8,19 +12,44 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  @ViewChild('miFormulario') miFormulario!: NgForm;
+  miFormu: FormGroup = this.fb.group({
+    email:! ['',[Validators.required,Validators.email]],
+    password:! ['',[Validators.required,Validators.minLength(3)]],
+  })
 
-  initForm = {
-    email: 'name@example.com',
-    password: 123456
+  user: Usuario = {
+    email:'',
+    password:''
   }
 
-  constructor() { }
+  constructor(public router: Router,
+              private LoginService: LoginService,
+              private fb: FormBuilder) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   login(){
-    console.log();
+    //me suscribo al login del servicio y si me devuelve un token lo almaceno en el localStorage
+    this.LoginService.login(this.user.email, this.user.password)
+    .subscribe({
+      next: (data => {
+        console.log(data)
+        localStorage.setItem('token', data.access_token!); 
+        this.router.navigateByUrl('publicar');
+      }),
+      error: e =>{
+        console.log(e.message);
+
+        Swal.fire(//para que salte un alert si los datos introducidos no están en el database.json
+          //{ 
+          // title: 'Error al iniciar sesión',
+          // text: 'Email o password proporcionados incorrectos',
+          // icon: 'error',
+          // confirmButtonText: 'Ok'
+        //}
+        'Error', e.error.message, 'error');  //para que devuelva si el error es del email o del password
+        
+      }
+    })
   }
 }
