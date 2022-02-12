@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/loginService';
 import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Usuario } from '../interfaces/interface';
+import { AccessService } from '../services/access.service';
 
 @Component({
   selector: 'app-login',
@@ -12,41 +10,28 @@ import { Usuario } from '../interfaces/interface';
 })
 export class LoginComponent implements OnInit {
 
-  miFormu: FormGroup = this.fb.group({
-    email:! ['',[Validators.required,Validators.email]],
-    password:! ['',[Validators.required,Validators.minLength(3)]],
-  })
-
-  user: Usuario = {
-    email:'',
-    password:''
-  }
+  email: string = '';
+  password: string = '';
 
   constructor(public router: Router,
-              private LoginService: LoginService,
-              private fb: FormBuilder) { }
+              private accessService: AccessService) { }
 
   ngOnInit(): void {}
 
   login(){
     //me suscribo al login del servicio y si me devuelve un token lo almaceno en el localStorage
-    this.LoginService.login(this.user.email, this.user.password)
+    this.accessService.login(this.email, this.password)
     .subscribe({
       next: (data => {
-        console.log(data)
+        //console.log(data) muestra el token
         localStorage.setItem('token', data.access_token!); 
+        //si el login es exitoso y me devuelve el token puedo navegar a /publicar
         this.router.navigateByUrl('publicar');
       }),
       error: e =>{
         console.log(e.message);
-
-        Swal.fire(//para que salte un alert si los datos introducidos no están en el database.json
-          //{ 
-          // title: 'Error al iniciar sesión',
-          // text: 'Email o password proporcionados incorrectos',
-          // icon: 'error',
-          // confirmButtonText: 'Ok'
-        //}
+        //PREGUNTAR POR QUÉ NO SALE EL MENSAJE CORRECTO
+        Swal.fire(
         'Error', e.error.message, 'error');  //para que devuelva si el error es del email o del password
         
       }

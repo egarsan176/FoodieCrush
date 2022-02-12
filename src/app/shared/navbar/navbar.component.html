@@ -31,9 +31,29 @@
               <a class="nav-link text-black" routerLinkActive="active" routerLink="/contacto"><strong>Contacto</strong></a>
             </li>
             <li>
-
               <a class="nav-link text-black " routerLinkActive="active" routerLink="/login"><i class="fas fa-user-circle"></i></a>
             </li>
+            <!-- <li *ngIf="isLogueado">
+              <button class="btn colorPurpleP" data-bs-toggle="modal" data-bs-target="#exampleModal">CERRAR SESIÓN</button>
+            <!-- Modal --
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cierre de Sesión</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        ¿Está seguro que quiere cerrar su sesión?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn colorPinkP" data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn colorGreenP" data-bs-dismiss="modal" (click)="onlogout()">Sí</button>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+            </li>-->
           </ul>
           
         </div>

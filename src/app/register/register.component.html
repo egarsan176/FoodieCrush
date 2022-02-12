@@ -10,85 +10,84 @@
                   Únete a nuestra comunidad
                 </h5>
                 <p class="text-muted text-sm mb-1 d-none d-md-block d-sm-block">Podrás publicar tus recetas para que todo el mundo pueda disfrutarla en sus casas. ¡No esperes más!</p>
-                <form (ngSubmit)="register()" >
+                <form (ngSubmit)="register()"  [formGroup]="miFormulario">
+
+                  <!--CAMPO NOMBRE-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" formControlName="nombre" id="floatingName" type="text" placeholder="Nombre del usuario">
-                        <!-- <span class="form-text text-danger"
+                      <input class="form-control" formControlName="fullName" id="floatingName" type="text" placeholder="Nombre del usuario">
+                      <span class="form-text text-danger"
                         *ngIf="campoNoValido('nombre')">
-                      Debe de ser en formato de nombre y apellido
-                  </span> -->
-                        <label for="floatingName">Nombre</label>
-                      </div>
-                      <label class="col-form-label">Género</label>
-                      <div class="form-check">
-                        <input class="form-check-input"
-                               type="radio"
-                               value="M"
-                               formControlName="genero"
-                               id="radioMasculino">
-                        <label class="form-check-label" for="radioMasculino">
-                          Masculino
-                        </label>
+                        {{ nameErrorMsg }}
+                      </span> 
+                      <label for="floatingName">Nombre</label>
                     </div>
-                    <div class="form-check mb-3">
-                        <input class="form-check-input"
-                               type="radio"
-                               value="F"
-                               formControlName="genero"
-                               id="radioFemenino">
-                        <label class="form-check-label" for="radioFemenino">
-                          Femenino
-                        </label>
-                    </div>
-                      <div class="form-floating mb-3">
-                        <input class="form-control" id="floatingInput" formControlName="email" type="email" placeholder="name@example.com">
-                        <!-- <span class="form-text text-danger"
-                           *ngIf="campoNoValido('email')">
+
+                     <!--CAMPO EMAIL-->
+                    <div class="form-floating mb-3">
+                      <input class="form-control" id="floatingInput" formControlName="email" type="email" placeholder="name@example.com">
+                      <span class="form-text text-danger"
+                          *ngIf="campoNoValido('email')">
                         {{ emailErrorMsg }}
-                        </span> -->
-                        <label for="floatingInput">Dirección correo electrónico</label>
-                      </div>
-                      <div class="form-floating mb-3">
-                        <input class="form-control" id="floatingUser" type="text" placeholder="nombre de usuario" formControlName="username">
-                        <!-- <span class="form-text text-danger"
+                      </span> 
+                      <label for="floatingInput">Dirección correo electrónico</label>
+                    </div>
+
+                     <!--CAMPO NOMBRE DE USUARIO-->
+                    <div class="form-floating mb-3">
+                      <input class="form-control" id="floatingUser" type="text" placeholder="nombre de usuario" formControlName="username">
+                      <span class="form-text text-danger"
                         *ngIf="campoNoValido('username')">
-                      El username no puede ser Strider
-                        </span> -->
-                        <label for="floatingUser">Nombre de usuario</label>
-                      </div>
-                      <div class="form-floating mb-3">
-                        <input class="form-control" id="floatingPassword" type="password" placeholder="Password" formControlName="password">
-                        <!-- <span class="form-text text-danger"
-                           *ngIf="campoNoValido('password')">
-                         La contraseña debe de ser mayor de 6 caracteres.
-                        </span> -->
-                        <label for="floatingPassword">Contraseña</label>
-                      </div>
-                      <div class="form-floating mb-3">
-                        <input class="form-control" id="floatingPassword" type="password" placeholder="Confirmar la contraseña" formControlName="password2">
-                        <!-- <span class="form-text text-danger"
+                        {{ userNameErrorMsg }}
+                      </span> 
+                      <label for="floatingUser">Nombre de usuario</label>
+                    </div>
+
+                     <!--CAMPO CONTRASEÑA-->
+                    <div class="form-floating mb-3">
+                      <input class="form-control" id="floatingPassword" type="password" placeholder="Password" formControlName="password">
+                      <span class="form-text text-danger"
+                        *ngIf="campoNoValido('password')">
+                        Mínimo 8 caracteres, al menos un dígito, una minúscula, una mayúscula y no otros símbolos.
+                      </span> 
+                      <label for="floatingPassword">Contraseña</label>
+                    </div>
+                     <!--CAMPO REPETIR CONTRASEÑA-->
+                    <div class="form-floating mb-3">
+                      <input class="form-control" id="floatingPassword" type="password" placeholder="Confirmar la contraseña" formControlName="password2">
+                      <span class="form-text text-danger"
                         *ngIf="campoNoValido('password2')">
-                      Las contraseñas deben de ser iguales
-                         </span> -->
-                        <label for="floatingPassword">Confirmar contraseña</label>
-                      </div>
-                      <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" formControlName="condiciones" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">Estoy de acuerdo con los  <a href="#">Términos y Condiciones</a>.</label>
-                      </div>
-                      <div class="form-group">
-                        <button class="btn colorPurpleP" [disabled]="" type="submit" name="registerSubmit">Registrarse</button>
-                      </div>
+                        Las contraseñas deben de ser iguales.
+                      </span> 
+                      <label for="floatingPassword">Confirmar contraseña</label>
+                    </div>
+
+                     <!--CAMPO ACEPTAR CONDICIONES-->
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" formControlName="condiciones" id="flexCheckDefault" >
+                      <span class="form-text text-danger"
+                      *ngIf="campoNoValido('condiciones')">
+                      Debes aceptar los términos y condiciones
+                    </span> 
+                      <label class="form-check-label" for="flexCheckDefault">Estoy de acuerdo con los  <a href="#">Términos y Condiciones</a>.</label>
+                    </div>
+
+                     <!--BOTOÓN ENVIAR-->
+                    <div class="form-group">
+                      <button class="btn colorPurpleP" [disabled]="!miFormulario.pending" type="submit" type="submit">Registrarse</button>
+                    </div>
                 </form>
               </div>
+
+               <!--PARA IR AL REGISTRO-->
               <div class="card-footer colorYellowP m-2">  
                 <div class="text-sm text-muted">¿Ya tienes una cuenta? <a routerLink="/login">Entra aquí</a>.</div>
               </div>
+
             </div> 
         </div>
     </div>
     <div class="col-lg-6 text-center m-auto pb-2 d-none d-md-block d-sm-block">  <!-- en móvil no se muestra la imagen -->
-      <img src="../../assets/img/pagRegister.jpg" class="img-thumbnail img-responsive imgLogin">
+      <img src="../../assets/img/pagRegister.jpg" class="img-thumbnail img-responsive imgLogin" alt="Manos de mujer echando harina a un bol">
     </div>
  
 </div>

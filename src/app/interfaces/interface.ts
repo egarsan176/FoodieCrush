@@ -4,8 +4,10 @@ export interface AuthResponse{
 }
 
 export interface Usuario{
-    email: string;
-    password: string;
+    fullName: string,
+    username: string,
+    email: string,
+    password: string
 }
 
 export interface ErrorResponse{
