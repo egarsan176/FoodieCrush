@@ -1,20 +1,20 @@
 <div class= "col-12">
-  
+ 
   <!-- navbar-expand-sm indicar el tamaño a partir del cual la barra se mostrará de forma expandida -->
   <nav class="navbar navbar-expand-sm colorYellowLightP navbar-dark py-0"> <!--py-0 para quitar el padding top-bottom que trae navbar por defecto-->
       <div class="container-fluid">
   
         <a class="navbar-brand" href="#">
-          <img src="../../../assets/img/logo.svg" class="logo" > 
+          <img src="../../../assets/img/logo.svg" class="logo" alt="logo"> 
         </a>
         <!-- button se mostrará únicamente cuando el menú se colapse y se ocultará cuando el menú aparezca expandido     -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
   
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
   
-          <ul class=" nav navbar-nav">
+          <ul class=" nav navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link text-black" routerLinkActive="active"  routerLink="/home"><strong>Inicio</strong></a>
             </li>
@@ -31,11 +31,11 @@
               <a class="nav-link text-black" routerLinkActive="active" routerLink="/contacto"><strong>Contacto</strong></a>
             </li>
             <li>
-              <a class="nav-link text-black " routerLinkActive="active" routerLink="/login"><i class="fas fa-user-circle"></i></a>
+              <a class="nav-link text-black " routerLinkActive="active" routerLink="/login"><i class="fas fa-user-alt"></i></a>
             </li>
-            <!-- <li *ngIf="isLogueado">
-              <button class="btn colorPurpleP" data-bs-toggle="modal" data-bs-target="#exampleModal">CERRAR SESIÓN</button>
-            <!-- Modal --
+            <li *ngIf="isLogueado">
+              <button class="btn colorPurpleP" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-sign-out-alt"></i>></button>
+            <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
@@ -53,12 +53,34 @@
                     </div>
                   </div>
                 </div> 
-            </li>-->
+            </li>
           </ul>
           
         </div>
 
       </div>
       
-    </nav>
+    </nav> 
+<!--   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="logo.svg" alt="logo" /></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarText">
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> --> 
 </div>

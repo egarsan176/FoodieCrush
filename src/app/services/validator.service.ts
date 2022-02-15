@@ -10,8 +10,8 @@ export class ValidatorService {
   
     public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"; 
 
-    //minimo 8 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.. NO otros símbolos
-    public passwordPattern: string = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$";
+    //Mínimo 6 caracteres, una letra y un número
+    public passwordPattern: string = "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$";
 
 
     camposIguales( campo1: string, campo2: string ) {

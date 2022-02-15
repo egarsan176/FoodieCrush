@@ -10,6 +10,8 @@ import { Observable} from 'rxjs';
 
 export class AccessService {
 
+  private isLogueado: boolean = false;
+
   private urlBase: string = environment.urlBase;  //url a la que hacer la petición
 
   constructor(private httpClient: HttpClient) { }
@@ -22,6 +24,7 @@ export class AccessService {
       'email': email,
       'password': password
     }
+    this.isLogueado = true
 
     //  const opcionHeader = new HttpHeaders();
     //  opcionHeader.append('Access-Control-Allow-Origin','*'); //es necesario para la api back
@@ -50,10 +53,10 @@ export class AccessService {
     return JSON.parse(<string>localStorage.getItem("token"));
   }
 
-
-//   getIsLogueado(): Observable<boolean>{
-//     return of(isLogueado)
-// }
+  //MÉTODO para comprobar si hay algún usuario que haya inciado sesión o no
+  checkIsLogueado(){
+    return this.isLogueado;
+  }
 
   //MÉTODO para registrar un usuario que hace una petición POST a la url de la api pasándole un usuario
   register(user: Usuario){
@@ -66,25 +69,25 @@ export class AccessService {
       );
   }
 
-  //MÉTODO para obtener el id de un usuario
-  getUsuario(){
-    const url = `${this.urlBase}/user`; //la url de la api que contiene a los usuarios
-    let token = localStorage.getItem('token');  //recupero el token
+  // //MÉTODO para obtener el id de un usuario
+  // getUsuario(){
+  //   const url = `${this.urlBase}/user`; //la url de la api que contiene a los usuarios
+  //   let token = localStorage.getItem('token');  //recupero el token
 
-    const headers = new HttpHeaders({ //cabeceras necesarias para hacer la petición de tipo get
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    })
-    const options = {
-      headers: headers
-    }
+  //   const headers = new HttpHeaders({ //cabeceras necesarias para hacer la petición de tipo get
+  //     'Content-Type': 'application/json',
+  //     'Authorization': `Bearer ${token}`
+  //   })
+  //   const options = {
+  //     headers: headers
+  //   }
 
-    this.httpClient.get(url, options) //hago una petición al GetMapping /user del UserController que me devuelve el id del usuario
-    .subscribe(data => {
-      localStorage.setItem("idUsuario", String(data));
-    })
+  //   this.httpClient.get(url, options) //hago una petición al GetMapping /user del UserController que me devuelve el id del usuario
+  //   .subscribe(data => {
+  //     localStorage.setItem("idUsuario", String(data));
+  //   })
 
-  }
+  // }
 
 
 }

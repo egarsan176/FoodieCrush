@@ -23,16 +23,16 @@ export class LoginComponent implements OnInit {
     this.accessService.login(this.email, this.password)
     .subscribe({
       next: (data => {
-        //console.log(data) muestra el token
+
         localStorage.setItem('token', data.access_token!); 
         //si el login es exitoso y me devuelve el token puedo navegar a /publicar
         this.router.navigateByUrl('publicar');
       }),
       error: e =>{
-        console.log(e.message);
-        //PREGUNTAR POR QUÉ NO SALE EL MENSAJE CORRECTO
+        //para que devuelva si el error es del email o del password
+        //el mensaje viene de la API
         Swal.fire(
-        'Error', e.error.message, 'error');  //para que devuelva si el error es del email o del password
+        'Error', e.error.mensaje, 'error');  
         
       }
     })

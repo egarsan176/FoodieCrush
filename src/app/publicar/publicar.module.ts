@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PublicarRoutingModule } from './publicar-routing.module';
 import { PublicarComponent } from './publicar.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { PublicarComponent } from './publicar.component';
   ],
   imports: [
     CommonModule,
-    PublicarRoutingModule
+    PublicarRoutingModule,
+    FormsModule
   ]
 })
 export class PublicarModule { }

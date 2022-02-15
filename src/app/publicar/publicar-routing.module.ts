@@ -5,7 +5,9 @@ import { PublicarComponent } from './publicar.component';
 
 const routes: Routes = [
 
-  { path: '', component: PublicarComponent, canActivate: [AuthGuard] }
+  { path: '', component: PublicarComponent, canActivate: [AuthGuard] },
+
+  { path: 'ver', loadChildren: () => import('./ver-recetas/ver-recetas.module').then(m => m.VerRecetasModule) }
 ];
 
 @NgModule({

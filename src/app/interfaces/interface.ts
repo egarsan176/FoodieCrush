@@ -11,6 +11,19 @@ export interface Usuario{
 }
 
 export interface ErrorResponse{
-    status: number;
-    message: string;
-  }
+    status: number,
+    message: string,
+}
+
+export interface Recipe{
+    recipeName: string,
+    method: string [],
+    category: string,
+    ingredientLine: IngredientLine[]
+
+}
+
+export interface IngredientLine{
+    ingredient: string,
+    amount: number
+}

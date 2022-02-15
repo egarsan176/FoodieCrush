@@ -16,7 +16,7 @@
                     <div class="form-floating mb-3">
                       <input class="form-control" formControlName="fullName" id="floatingName" type="text" placeholder="Nombre del usuario">
                       <span class="form-text text-danger"
-                        *ngIf="campoNoValido('nombre')">
+                        *ngIf="campoNoValido('fullName')">
                         {{ nameErrorMsg }}
                       </span> 
                       <label for="floatingName">Nombre</label>
@@ -47,7 +47,7 @@
                       <input class="form-control" id="floatingPassword" type="password" placeholder="Password" formControlName="password">
                       <span class="form-text text-danger"
                         *ngIf="campoNoValido('password')">
-                        Mínimo 8 caracteres, al menos un dígito, una minúscula, una mayúscula y no otros símbolos.
+                        {{passwordErrorMsg}}
                       </span> 
                       <label for="floatingPassword">Contraseña</label>
                     </div>
@@ -64,16 +64,16 @@
                      <!--CAMPO ACEPTAR CONDICIONES-->
                     <div class="form-check mb-3">
                       <input class="form-check-input" type="checkbox" formControlName="condiciones" id="flexCheckDefault" >
+                      <label class="form-check-label" for="flexCheckDefault">Estoy de acuerdo con los  <a href="#">Términos y Condiciones</a>.</label>
                       <span class="form-text text-danger"
-                      *ngIf="campoNoValido('condiciones')">
+                      *ngIf="campoNoValido('condiciones')"><br>
                       Debes aceptar los términos y condiciones
                     </span> 
-                      <label class="form-check-label" for="flexCheckDefault">Estoy de acuerdo con los  <a href="#">Términos y Condiciones</a>.</label>
                     </div>
 
-                     <!--BOTOÓN ENVIAR-->
+                     <!--BOTÓN ENVIAR-->
                     <div class="form-group">
-                      <button class="btn colorPurpleP" [disabled]="!miFormulario.pending" type="submit" type="submit">Registrarse</button>
+                      <button class="btn colorPurpleP" [disabled]="miFormulario.invalid" type="submit" type="submit">Registrarse</button>
                     </div>
                 </form>
               </div>

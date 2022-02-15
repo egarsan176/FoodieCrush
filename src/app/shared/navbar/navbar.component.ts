@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
 import { AccessService } from 'src/app/services/access.service';
 
 @Component({
@@ -9,15 +8,13 @@ import { AccessService } from 'src/app/services/access.service';
 })
 export class NavbarComponent implements OnInit {
 
-  //isLogueado: boolean ;
-
+  @Input() isLogueado: boolean = false;
 
   constructor(private accessService: AccessService) { }
 
   ngOnInit(): void {
-    // this.isLogueado = this.accessService.getIsLogueado().subscribe(
-    //   this.isLogueado = this.isLogueado
- //   )
+    // this.isLogueado;
+    // console.log(this.isLogueado)
   }
 
 
@@ -25,7 +22,6 @@ export class NavbarComponent implements OnInit {
     this.accessService.logout();
   }
 
-  
 
 //  get isLogueado(){
 //    return this.accessService.checkIsLogueado();

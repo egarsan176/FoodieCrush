@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
 
   //formGroup (un grupo de controles) realiza un seguimiento del valor y estado de cambio y validez de los datos
   miFormulario: FormGroup = this.fb.group({
+
     //el nombre tiene que pasar el patrón que se declara en el servicio que indica que tiene que ser nombre y apellido
     fullName: ['', [ Validators.required, Validators.pattern( this.validatorService.nombreApellidoPattern ) ] ],
 
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
     email: ['', [ Validators.required, Validators.pattern( this.validatorService.emailPattern ) ], [ this.emailValidator ] ],
     
     //username mínimo 5 caracteres
-    username: ['', [ Validators.required], Validators.min(5) ],
+    username: ['', [ Validators.required, Validators.min(5) ]],
 
     //tiene que cumplir con el patrón indicado en el validator-service
     password: ['', [ Validators.required, Validators.pattern( this.validatorService.passwordPattern ) ]  ],
@@ -60,7 +61,7 @@ export class RegisterComponent implements OnInit {
     const errors = this.miFormulario.get('username')?.errors!;
     if(errors['required']){
       return 'El nombre de usuario es obligatorio';
-    }else if(errors['pattern']){  //si no concuerda con el patrón del validator.service
+    }else if(errors['min']){  //si no concuerda con el patrón del validator.service
       return 'Debe tener como mínimo 5 caracteres';
     }
       return '';
@@ -68,11 +69,21 @@ export class RegisterComponent implements OnInit {
 
   //mensajes para el error del nombre
   get nameErrorMsg(): string{
-    const errors = this.miFormulario.get('nombre')?.errors!;
+    const errors = this.miFormulario.get('fullName')?.errors!;
     if(errors['required']){
       return 'Este campo es obligatorio';
     }else if(errors['pattern']){  //si no concuerda con el patrón del validator.service
       return 'Debe introducir un nombre y un apellido';
+    }
+      return '';
+  }
+  //mensajes para la contraseña
+  get passwordErrorMsg(): string{
+    const errors = this.miFormulario.get('password')?.errors!;
+    if(errors['required']){
+      return 'Este campo es obligatorio';
+    }else if(errors['pattern']){  //si no concuerda con el patrón del validator.service
+      return 'Mínimo 6 caracteres, una letra y un número';
     }
       return '';
   }
