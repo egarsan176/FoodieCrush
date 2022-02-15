@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EmailValidatorService } from '../services/email-validator.service';
+import { ValidatorService } from '../services/validator.service';
 
 
 @NgModule({
@@ -11,7 +14,15 @@ import { RegisterComponent } from './register.component';
   ],
   imports: [
     CommonModule,
-    RegisterRoutingModule
+    RegisterRoutingModule,
+    ReactiveFormsModule  //necesario para cargar el FormBuilder
+  ],
+  exports: [
+    RegisterComponent
+  ],
+  providers:[
+    EmailValidatorService,
+    ValidatorService
   ]
 })
 export class RegisterModule { }

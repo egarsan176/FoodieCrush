@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AccessService } from 'src/app/services/access.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  @Input() isLogueado: boolean = false;
+
+  constructor(private accessService: AccessService) { }
 
   ngOnInit(): void {
+    // this.isLogueado;
+    // console.log(this.isLogueado)
   }
+
+
+  onlogout() {
+    this.accessService.logout();
+  }
+
+
+//  get isLogueado(){
+//    return this.accessService.checkIsLogueado();
+//  }
+
+
+
+
 
 }
