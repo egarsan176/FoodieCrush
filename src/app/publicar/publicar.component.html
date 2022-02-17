@@ -1,7 +1,7 @@
 
 <div class="row p-1 my-3 justify-content-center">
     <div class="text-center mb-2">
-        <h4>Hola {{name}}, aquí podrás publicar tu receta para compartirla con la comunidad Foodie</h4>
+        <h4>Aquí podrás publicar tu receta para compartirla con la comunidad Foodie y también consultar tus recetas ya publicadas</h4>
     </div>
 </div>
 
@@ -25,13 +25,13 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Título de la Receta" name="recipeName">
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Título de la Receta" name="recipeName"  [(ngModel)]="recipe.recipeName">
                                 <label for="floatingInputGrid">Título de la receta</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating mb-3">
-                                <select class="form-select pb-1" id="floatingSelectGrid" placeholder="Categoría" name="category">
+                                <select class="form-select pb-1" id="floatingSelectGrid" placeholder="Categoría" name="category" [(ngModel)]="recipe.category">
                                     <option selected>Escoger...</option>
                                     <option value="1">Pasta</option>
                                     <option value="2">Arroz</option>
@@ -52,20 +52,38 @@
                             <div class="input-group">
                                 <input class="form-control p-2" placeholder="Añadir ingrediente" [(ngModel)]="ingrediente"
                                         (keyup.enter)="agregarIngrediente()"  name="ingredient">
-                                <button class="btn colorPinkP" type="button" (click)="agregarIngrediente()">Añadir</button>
+                                <button class="btn colorPinkP" type="submit" (click)="agregarIngrediente()">Añadir</button>
                             </div>
                         </div>
                         <div class="col-md">
                             <label class="col-form-label">¿Qué cantidad?</label>
                             <div class="input-group">
-                                <input class="form-control p-2" placeholder="Añadir ingrediente" [(ngModel)]="cantidad"
+                                <input class="form-control p-2" placeholder="Añadir cantidad en gramos" [(ngModel)]="cantidad"
                                         (keyup.enter)="agregarCantidad()"  name="amount" >
-                                <button class="btn colorPinkP" type="button" (click)="agregarCantidad()">Añadir</button>
+                                <button class="btn colorPinkP" type="submit" (click)="agregarCantidad()">Añadir</button>
                             </div>
 
                         </div>
                     </div>
 
+                    <div *ngIf="cantidades.length>0">
+
+                        <!-- Listado de ingredientes -->
+                        <div class="mb-3 row" >
+                            <label class="col-sm-3 col-form-label">Ingredientes y Cantidades</label>
+                            <div class="col-sm-9">
+    
+                                <div class="input-group col-md" *ngFor="let cant of cantidades; let i = index">
+                                    <input  name="{{cant}}" class="form-control"  required [ngModel]="ingredientes[i] + ' - '+ cant ">
+                                    <button class="btn btn-outline-danger" type="button" (click)="eliminar(i)">Eliminar este ingrediente</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <p>Si has terminado de añadir ingredientes y estás seguro, pulsa CONFIRMAR INGREDIENTES</p>
+                        <button class="btn colorGreenP" type="button" (click)="crearLinea()">CONFIRMAR INGREDIENTES</button>
+
+                    </div>
 
                     <div class="mb-3 row">
                         <label class="col-form-label">Escribe a continuación los pasos a seguir en la receta:</label>
@@ -76,31 +94,6 @@
                         </div>
                     </div>
 
-                    <!-- Listado de ingredientes -->
-                    <div class="mb-3 row" *ngIf="ingredientLine!=null">
-                        <label class="col-sm-3 col-form-label">Ingredientes:</label>
-                        <div class="col-sm-9">
-
-                            <div class="input-group mb-1"
-                                *ngFor="let linea of recipe.ingredientLine; let i = index">
-                                <input [(ngModel)]="linea.ingredient"
-                                    name="favorito_{{ i }}"
-                                    class="form-control"
-                                    required>
-                                    <input [(ngModel)]="linea.amount"
-                                    name="favorito_{{ i }}"
-                                    class="form-control"
-                                    required>
-
-                                <button class="btn btn-outline-danger"
-                                        type="button"
-                                        (click)="eliminar(i)">
-                                Eliminar
-                            </button>
-                            </div>
-
-                        </div>
-                    </div>
 
                     <div class="mb-3 row">
                         <label class="col-form-label" for="inputGroupFile01">Sube aquí la imagen que usaremos para acompañar tu receta:</label>
@@ -109,8 +102,7 @@
                         </div>
                     </div>
 
-                    <button class="btn colorPurpleP mt-2" type="submit" [disabled]="miFormulario.invalid"
-                    (click)="publicar()">GUARDAR</button>
+                    <button class="btn colorPurpleP mt-2" type="submit" [disabled]="miFormulario.invalid">GUARDAR</button>
 
                 </form>
             </div>
@@ -124,9 +116,6 @@
     </div>
 </div>
 
-
-<span>Receta</span>
-<pre>{{recipe | json}}</pre>
  
 
 <div class="row p-1 my-3 justify-content-center">

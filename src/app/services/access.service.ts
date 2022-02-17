@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { AuthResponse, Usuario } from '../interfaces/interface';
+import { AuthResponse, Recipe, Usuario } from '../interfaces/interface';
 import { Observable} from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AccessService {
 
   private urlBase: string = environment.urlBase;  //url a la que hacer la petición
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, public router: Router) { }
 
   //MÉTODO para hacer login que hace una petición POST a la url de la api con  el email y el password
   login(email:string, password:string){
@@ -46,6 +47,7 @@ export class AccessService {
   //MÉTODO para poder borrar el token del local Storage
   logout(){
     localStorage.removeItem("token");
+    this.router.navigate(['']);
   }
 
   //MÉTODO para recuperar el token almacenado en el localStorage
@@ -69,25 +71,33 @@ export class AccessService {
       );
   }
 
-  // //MÉTODO para obtener el id de un usuario
-  // getUsuario(){
-  //   const url = `${this.urlBase}/user`; //la url de la api que contiene a los usuarios
-  //   let token = localStorage.getItem('token');  //recupero el token
+  //MÉTODO para obtener el id de un usuario
+  getUsuario(){
+    const url = `${this.urlBase}/user`; //la url de la api que contiene a los usuarios
+    let token = localStorage.getItem('token');  //recupero el token
 
-  //   const headers = new HttpHeaders({ //cabeceras necesarias para hacer la petición de tipo get
-  //     'Content-Type': 'application/json',
-  //     'Authorization': `Bearer ${token}`
-  //   })
-  //   const options = {
-  //     headers: headers
-  //   }
+    const headers = new HttpHeaders({ //cabeceras necesarias para hacer la petición de tipo get
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+    const options = {
+      headers: headers
+    }
 
-  //   this.httpClient.get(url, options) //hago una petición al GetMapping /user del UserController que me devuelve el id del usuario
-  //   .subscribe(data => {
-  //     localStorage.setItem("idUsuario", String(data));
-  //   })
+    return this.httpClient.get(url, options) //hago una petición al GetMapping /user del UserController que me devuelve el id del usuario
+  
+  }
 
-  // }
+  //MÉTODO para publicar una receta en la bbdd
+  publicar(recipe: Recipe){
+    //this.getUsuario();
+    const id = this.getUsuario();
+ 
+    const url = `${this.urlBase}/recipes${id}`;
+    const body = recipe; //es la receta que se obtiene al rellenar el formulario de /publicar
+
+    return this.httpClient.post<Recipe>(url, body);
+  }
 
 
 }

@@ -18,7 +18,7 @@ export interface ErrorResponse{
 export interface Recipe{
     recipeName: string,
     method: string [],
-    category: string,
+    category: number,
     ingredientLine: IngredientLine[]
 
 }

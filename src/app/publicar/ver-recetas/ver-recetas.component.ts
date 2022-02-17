@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-ver-recetas',
@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerRecetasComponent implements OnInit {
 
-  
+  @Input()  //será una variable recibida de otro componente a través de un property binding en el padre
+  texto: string ="";
 
   constructor() { }
 

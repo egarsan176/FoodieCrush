@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { PublicarRoutingModule } from './publicar-routing.module';
 import { PublicarComponent } from './publicar.component';
 import { FormsModule } from '@angular/forms';
+import { SaludoComponent } from './saludo/saludo.component';
 
 
 @NgModule({
   declarations: [
-    PublicarComponent
+    PublicarComponent,
+    SaludoComponent
   ],
   imports: [
     CommonModule,

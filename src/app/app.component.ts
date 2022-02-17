@@ -37,7 +37,7 @@ export class AppComponent {
   check(){
     //Si la ruta de la barra de navegación en ese momento contiene /publicar quiere decir que hay un usuario que ha hecho login
     console.log(this.router.url);
-    if (this.router.url.includes('publicar')) {
+    if (this.router.url.includes('publicar')  && this.accessService.getToken != null) {
       this.isLogueado = true;
     }else{
       this.isLogueado = false;
