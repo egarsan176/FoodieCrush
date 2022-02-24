@@ -6,6 +6,7 @@ import { RegisterComponent } from './register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmailValidatorService } from '../services/email-validator.service';
 import { ValidatorService } from '../services/validator.service';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ValidatorService } from '../services/validator.service';
   imports: [
     CommonModule,
     RegisterRoutingModule,
-    ReactiveFormsModule  //necesario para cargar el FormBuilder
+    ReactiveFormsModule,  //necesario para cargar el FormBuilder
+    SharedModule
   ],
   exports: [
     RegisterComponent

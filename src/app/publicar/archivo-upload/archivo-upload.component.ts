@@ -1,0 +1,81 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { FileUploadService } from 'src/app/services/file-upload.service';
+
+@Component({
+  selector: 'app-archivo-upload',
+  templateUrl: './archivo-upload.component.html',
+  styleUrls: ['./archivo-upload.component.css']
+})
+export class ArchivoUploadComponent implements OnInit {
+
+  selectedFiles?: FileList;
+  currentFile?: File;
+  progress = 0;
+  message = '';
+  fileInfos?: Observable<any>;
+  mostrar:boolean = false;
+
+  constructor(private uploadService: FileUploadService) { }
+
+  ngOnInit(): void {
+    this.fileInfos = this.uploadService.getFiles();
+  }
+
+  //MÉTODO que nos ayuda a obtener los Archivos seleccionados. 
+  selectFile(event: any): void {
+    this.selectedFiles = event.target.files;
+  }
+
+  //MÉTODO para cargar el archivo
+  upload(): void {
+    this.progress = 0;
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
+      if (file) {
+        this.currentFile = file;
+        this.uploadService.upload(this.currentFile).subscribe({
+          next: (event: any) => {
+            if (event.type === HttpEventType.UploadProgress) {
+              this.progress = Math.round(100 * event.loaded / event.total);
+            } else if (event instanceof HttpResponse) {
+              this.message = event.body.message;
+              this.fileInfos = this.uploadService.getFiles();
+              this.mostrar = true;
+              localStorage.setItem("imgNAME", file.name)
+              console.log(JSON.stringify(this.currentFile))
+            }
+          },
+          error: (err: any) => {
+            console.log(err);
+            this.progress = 0;
+            if (err.error && err.error.message) {
+              this.message = err.error.message;
+            } else {
+              this.message = 'No se ha podido subir el archivo';
+            }
+            this.currentFile = undefined;
+          }
+        });
+      }
+      this.selectedFiles = undefined;
+    }
+  }
+
+  deleteFile(file: File){
+    this.currentFile = file;
+    this.uploadService.deleteFile(this.currentFile);
+  }
+
+  
+
+//   We use selectedFiles for accessing current File as the first Item. 
+//Then we call uploadService.upload() method on the currentFile.
+
+// The progress will be calculated basing on event.loaded and event.total.
+// If the transmission is done, the event will be a HttpResponse object.
+//At this time, we call uploadService.getFiles() to get the files’ information
+//and assign the result to fileInfos variable.
+
+}

@@ -19,34 +19,34 @@ export class AppComponent {
   //te volverá a subscribir al evento, y tendrás dos subscribers, pero tendrás que suscribirte
   //asignándolo a una variable para desuscribir ese mismo objeto.
 
-  public isSubscribe!: Subscription;
+  // public isSubscribe!: Subscription;
 
-  isLogueado: boolean = false;
+  // isLogueado: boolean = false;
 
   constructor(private router: Router, private accessService: AccessService){
     //me subscribo al router events, que es el que te mandara los eventos cada vez
     //que se inicie la navegación, y filtramos que solo te mande cuando termina de navegar NavigationEnd
-    this.isSubscribe = this.router.events
-    .pipe(filter((event) => event instanceof NavigationEnd))
-    .subscribe((event) => {
-      console.log(event);
-      this.check();
-    });
+    // this.isSubscribe = this.router.events
+    // .pipe(filter((event) => event instanceof NavigationEnd))
+    // .subscribe((event) => {
+    //   console.log(event);
+    //   this.check();
+    // });
   }
 
-  check(){
-    //Si la ruta de la barra de navegación en ese momento contiene /publicar quiere decir que hay un usuario que ha hecho login
-    console.log(this.router.url);
-    if (this.router.url.includes('publicar')  && this.accessService.getToken != null) {
-      this.isLogueado = true;
-    }else{
-      this.isLogueado = false;
-    }
-  }
+  // check(){
+  //   //Si la ruta de la barra de navegación en ese momento contiene /publicar quiere decir que hay un usuario que ha hecho login
+  //   console.log(this.router.url);
+  //   if (this.router.url.includes('publicar')  && this.accessService.getToken != null) {
+  //     this.isLogueado = true;
+  //   }else{
+  //     this.isLogueado = false;
+  //   }
+  // }
 
-  //En el onDestroy, valido si mi subscriber sigue activo y me desuscribo,
-  //si no seguirá activo escuchando cuando navegues a otro componente donde no lo requieras.
-  ngOnDestroy() {
-    this.isSubscribe?.unsubscribe();
-  }
+  // //En el onDestroy, valido si mi subscriber sigue activo y me desuscribo,
+  // //si no seguirá activo escuchando cuando navegues a otro componente donde no lo requieras.
+  // ngOnDestroy() {
+  //   this.isSubscribe?.unsubscribe();
+  // }
 }

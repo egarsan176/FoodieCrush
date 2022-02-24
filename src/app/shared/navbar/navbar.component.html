@@ -1,7 +1,7 @@
 <div class= "col-12">
  
   <!-- navbar-expand-sm indicar el tamaño a partir del cual la barra se mostrará de forma expandida -->
-  <nav class="navbar navbar-expand-sm colorYellowLightP navbar-dark py-0"> <!--py-0 para quitar el padding top-bottom que trae navbar por defecto-->
+  <nav class="navbar navbar-expand-sm colorYellowLightP navbar-light py-0"> <!--py-0 para quitar el padding top-bottom que trae navbar por defecto-->
       <div class="container-fluid">
   
         <a class="navbar-brand" href="#">
@@ -15,25 +15,25 @@
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
   
           <ul class=" nav navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link text-black" routerLinkActive="active"  routerLink="/home"><strong>Inicio</strong></a>
+            <li class="nav-item active">
+              <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/home"><strong>Inicio</strong></a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link text-black" routerLinkActive="active" routerLink="/recetas"><strong>Recetas</strong></a>
+              <a class="nav-link" routerLinkActive="active" routerLink="/recetas"><strong>Recetas</strong></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-black" routerLinkActive="active" routerLink="/publicar"><strong>Publicar</strong></a>
+              <a class="nav-link" routerLinkActive="active" routerLink="/publicar"><strong>Publicar</strong></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-black" routerLinkActive="active" routerLink="/about"><strong>Sobre mí</strong></a>
+              <a class="nav-link" routerLinkActive="active" routerLink="/about"><strong>Sobre mí</strong></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-black" routerLinkActive="active" routerLink="/contacto"><strong>Contacto</strong></a>
+              <a class="nav-link" routerLinkActive="active" routerLink="/contacto"><strong>Contacto</strong></a>
             </li>
             <li>
               <a class="nav-link text-black " routerLinkActive="active" routerLink="/login"><i class="fas fa-user-alt"></i></a>
             </li>
-            <li *ngIf="isLogueado">
+            <li *ngIf="user">
               <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-sign-out-alt"></i></button>
             <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -83,4 +83,5 @@
     </div>
   </div>
 </nav> --> 
+
 </div>

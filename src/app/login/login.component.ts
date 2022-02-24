@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
     .subscribe({
       next: (data => {
 
-        localStorage.setItem('token', data.access_token!); 
+        localStorage.setItem('token', data.access_token); 
+        this.accessService.getUsuario(); //para almacenar el usuario en el localStorage
         //si el login es exitoso y me devuelve el token puedo navegar a /publicar
         this.router.navigateByUrl('publicar');
       }),
@@ -37,4 +38,5 @@ export class LoginComponent implements OnInit {
       }
     })
   }
+
 }

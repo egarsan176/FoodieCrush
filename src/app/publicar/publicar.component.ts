@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { IngredientLine, Recipe } from '../interfaces/interface';
+import { Component, OnInit } from '@angular/core';
+import { FileDB, IngredientLine, Recipe } from '../interfaces/interface';
 import { AccessService } from '../services/access.service';
 import Swal from 'sweetalert2';
+import { GeneratedFile } from '@angular/compiler';
+import { FileUploadService } from '../services/file-upload.service';
 
 @Component({
   selector: 'app-publicar',
@@ -11,38 +12,53 @@ import Swal from 'sweetalert2';
 })
 export class PublicarComponent implements OnInit {
 
-  @ViewChild('miFormulario') miFormulario!: NgForm;
 
   ingrediente: string = "";
   cantidad!: number;
   paso:string ="";
+  pasos: string []= [];
   ingredientes: string [] = [];
   cantidades : number [] = [];
+  category: number =0;
 
+  file!: FileDB;
 
+  
   recipe: Recipe = {
     recipeName: '',
     method: [],
     category: 0,
-    ingredientLine: []
+    ingredientLine: [],
+    file: this.file
   }
+  constructor(private accessService: AccessService,
+    private uploadService: FileUploadService) { }
 
-  constructor(private accessService: AccessService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
+  ///////////////////////////GESTIÓN DE LA LÍNEA DE INGREDIENTES
 
+  //este método agrega un ingrediente al auxiliar de ingredientes
   agregarIngrediente(){
-    this.ingredientes.push(this.ingrediente);
-    this.ingrediente="";
-    console.log(this.ingredientes)
+    if(!this.ingredientes.includes(this.ingrediente)){
+      this.ingredientes.push(this.ingrediente);
+      this.ingrediente="";
+    }
   }
-
+  
+  //este método agrega una cantidad al auxiliar de cantidades
   agregarCantidad(){
     this.cantidades.push(this.cantidad);
     this.cantidad=0;
   }
 
+  //este método elimina un ingrediente y su cantidad correspondiente de los auxiliares ingredientes[] y cantidades[]
+  eliminar(index: number){
+    this.ingredientes.splice(index, 1);
+    this.cantidades.splice(index, 1);
+  }
+
+  //este método crea la línea de ingredientes de la receta a través de los auxiliares ingredientes[] y cantidades[]
   crearLinea(){
     if(this.ingredientes.length == this.cantidades.length){
 
@@ -60,23 +76,66 @@ export class PublicarComponent implements OnInit {
     }
     
   }
+  
 
+  ///////////////////////////GESTIÓN DE LA LOS PASOS DE LA RECETA
+
+  //este método agrega un paso al auxiliar de pasos[]
   agregarPaso(){
-    this.recipe.method.push(this.paso)
+    if(!this.pasos.includes(this.paso)){
+      this.pasos.push(this.paso);
+    }
+  }
+  //este método elimina un paso del auxiliar de pasos[]
+  eliminarPaso(index: number){
+    this.pasos.splice(index, 1);
   }
 
-  eliminar(index: number){
-    this.ingredientes.splice(index, 1);
-    this.cantidades.splice(index, 1);
+  //este método confirma los pasos e iguala el auxiliar de pasos[] al recipe.method[]
+  confirmarPasos(){
+    this.recipe.method = this.pasos;
   }
 
+  getFile(){
+    this.uploadService.getFileByName().subscribe({
+      next: (data =>{
+        this.file = data;
+      }),
+      error: e => {
+        console.log(e);
+      }
+    })
+  }
+
+  //método para publicar la receta en la bbdd a través de una petición al servicio pasando el objeto receta
   publicar(){
+    this.getFile();
+    //console.log(this.recipe)
+    if(this.recipe.recipeName!="" && this.recipe.method.length>0 && this.recipe.category!=0 && this.recipe.ingredientLine.length>0){
 
-    //id = this.accessService.getUsuario();
+      this.accessService.publicar(this.recipe)
+      .subscribe({
+        next: (data => {
+          console.log(data);
+          
+          // this.recipe = {
+          //   recipeName: '',
+          //   method: [],
+          //   category: 0,
+          //   ingredientLine: [],
+          //   file: 
+          // }
+        }), 
+        error: e => {
+          Swal.fire('Error', 'No se ha podido publicar tu receta. Inténtalo más tarde.', 'error');
+        }
+      }
+  
+      );
+    }else{
+      Swal.fire('Error', 'Todos los campos de la receta deben estar rellenos.', 'error');
+    }
 
-    //console.log(JSON.stringify(this.recipe));
-
-    this.accessService.publicar(this.recipe).subscribe();
   }
 
 }

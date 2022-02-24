@@ -19,11 +19,25 @@ export interface Recipe{
     recipeName: string,
     method: string [],
     category: number,
-    ingredientLine: IngredientLine[]
+    ingredientLine: IngredientLine[],
+    file: FileDB
 
 }
+
 
 export interface IngredientLine{
     ingredient: string,
     amount: number
 }
+
+export interface FileDB{
+    name: string,
+    data: number, 
+    type: string
+}
+
+
+export interface IDemoNgComponentEventType {
+    cmd: string;
+    data: any;
+  }

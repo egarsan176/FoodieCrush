@@ -21,20 +21,22 @@
                         En primer lugar, muchas gracias por compartir tu receta 😊
                     </h5>
                     <p class="text-muted text-sm mb-3 d-none d-md-block d-sm-block">Es muy sencillo. Tan solo tienes que rellenar los siguientes campos con la información que se detalla en cada uno de ellos.</p>
-                    <form  (ngSubmit)="publicar()" #miFormulario="ngForm">
+                    <app-archivo-upload></app-archivo-upload>
+                    
+                    <form  (ngSubmit)="publicar()">
                     <div class="row">
                         <div class="col-md">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Título de la Receta" name="recipeName"  [(ngModel)]="recipe.recipeName">
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Título de la Receta" name="recipeName"  [(ngModel)]="recipe.recipeName" required>
                                 <label for="floatingInputGrid">Título de la receta</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating mb-3">
-                                <select class="form-select pb-1" id="floatingSelectGrid" placeholder="Categoría" name="category" [(ngModel)]="recipe.category">
+                                <select class="form-select pb-1" id="floatingSelectGrid" placeholder="Categoría" name="category" [(ngModel)]="recipe.category" required>
                                     <option selected>Escoger...</option>
-                                    <option value="1">Pasta</option>
-                                    <option value="2">Arroz</option>
+                                    <option value=1>Pasta</option>
+                                    <option value=2>Arroz</option>
                                     <option value="3">Carne</option>
                                     <option value="4">Guisos</option>
                                     <option value="5">Salsas</option>                              
@@ -52,7 +54,7 @@
                             <div class="input-group">
                                 <input class="form-control p-2" placeholder="Añadir ingrediente" [(ngModel)]="ingrediente"
                                         (keyup.enter)="agregarIngrediente()"  name="ingredient">
-                                <button class="btn colorPinkP" type="submit" (click)="agregarIngrediente()">Añadir</button>
+                                <button class="btn colorPinkP" type="button" (click)="agregarIngrediente()">Añadir</button>
                             </div>
                         </div>
                         <div class="col-md">
@@ -60,27 +62,27 @@
                             <div class="input-group">
                                 <input class="form-control p-2" placeholder="Añadir cantidad en gramos" [(ngModel)]="cantidad"
                                         (keyup.enter)="agregarCantidad()"  name="amount" >
-                                <button class="btn colorPinkP" type="submit" (click)="agregarCantidad()">Añadir</button>
+                                <button class="btn colorPinkP" type="button" (click)="agregarCantidad()">Añadir</button>
                             </div>
 
                         </div>
                     </div>
 
+                    <!-- Listado de ingredientes -->
                     <div *ngIf="cantidades.length>0">
 
-                        <!-- Listado de ingredientes -->
                         <div class="mb-3 row" >
                             <label class="col-sm-3 col-form-label">Ingredientes y Cantidades</label>
                             <div class="col-sm-9">
     
                                 <div class="input-group col-md" *ngFor="let cant of cantidades; let i = index">
-                                    <input  name="{{cant}}" class="form-control"  required [ngModel]="ingredientes[i] + ' - '+ cant ">
+                                    <input  name="{{cant}}" class="form-control"  required [ngModel]="ingredientes[i].toUpperCase() + ' - '+ cant ">
                                     <button class="btn btn-outline-danger" type="button" (click)="eliminar(i)">Eliminar este ingrediente</button>
                                 </div>
 
                             </div>
                         </div>
-                        <p>Si has terminado de añadir ingredientes y estás seguro, pulsa CONFIRMAR INGREDIENTES</p>
+                        <p>Si has terminado de añadir ingredientes y estás seguro, pulsa CONFIRMAR INGREDIENTES.</p>
                         <button class="btn colorGreenP" type="button" (click)="crearLinea()">CONFIRMAR INGREDIENTES</button>
 
                     </div>
@@ -94,15 +96,33 @@
                         </div>
                     </div>
 
+                    <!-- Listado de pasos de la receta-->
+                    <div *ngIf="pasos.length>0">
 
-                    <div class="mb-3 row">
+                        <div class="mb-3 row" >
+                            <label class="col-sm-3 col-form-label">Elaboración de la receta</label>
+                            <div class="col-sm-9">
+    
+                                <div class="input-group col-md" *ngFor="let paso of pasos; let i = index">
+                                    <input  name="{{paso}}" class="form-control"  required [ngModel]="i + '.  '+ paso.toUpperCase() ">
+                                    <button class="btn btn-outline-danger" type="button" (click)="eliminarPaso(i)">Eliminar este paso</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <p>Si estás seguro que estos son los pasos a seguir en la receta, pulsa CONFIRMAR PASOS.</p>
+                        <button class="btn colorGreenP" type="button" (click)="confirmarPasos()">CONFIRMAR PASOS</button>
+
+                    </div>
+
+                    <!-- <div class="mb-3 row">
                         <label class="col-form-label" for="inputGroupFile01">Sube aquí la imagen que usaremos para acompañar tu receta:</label>
                         <div class="input-group">
                             <input type="file" class="form-control" id="inputGroupFile01"  accept=".jpg, .png, .jpeg"/> 
                         </div>
-                    </div>
+                    </div> -->
 
-                    <button class="btn colorPurpleP mt-2" type="submit" [disabled]="miFormulario.invalid">GUARDAR</button>
+                    <button class="btn colorPurpleP mt-2" type="submit">GUARDAR</button>
 
                 </form>
             </div>
@@ -125,5 +145,7 @@
       </div>
 
 </div>
+
+<app-scroll-to-top ubicacion="Publicar"></app-scroll-to-top>
 
 
