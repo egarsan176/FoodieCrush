@@ -37,12 +37,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 "Una vez hervidas machacar y añadir mantequilla y leche.",
 "Remover enérgicamente.",
 "Salpimentar y servir."],
-"category": 7,
+"category": 6,
 "ingredientLine":[
-{"ingredient":"patata","amount":"4"},
-{"ingredient":"cebolla","amount":"1"},
-{"ingredient":"leche","amount":"1"},
-{"ingredient":"mantequilla","amount":"1"},
+{"ingredient":"patata","amount":"500"},
+{"ingredient":"cebolla","amount":"150"},
+{"ingredient":"leche","amount":"1000"},
+{"ingredient":"mantequilla","amount":"50"},
 {"ingredient":"sal","amount":"1"},
 {"ingredient":"pimienta","amount":"1"}
 ]
@@ -56,13 +56,75 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 "Mover constantemente el arroz.",
 "Transcurridos 30 minutos retirar del fuego.",
 "Verter en pequeños cuencos y decorar con canela por encima."],
-"category": 6,
+"category": 5,
 "ingredientLine":[
-{"ingredient":"leche","amount":"1"},
-{"ingredient":"arroz","amount":"1"},
-{"ingredient":"azúcar","amount":"1"},
+{"ingredient":"leche","amount":"1000"},
+{"ingredient":"arroz","amount":"200"},
+{"ingredient":"azúcar","amount":"150"},
 {"ingredient":"canela","amount":"1"},
 {"ingredient":"limón","amount":"1"}
+]
+}
+
+{"recipeName":"macarrones con tomate",
+"method":
+["Cocer la pasta en agua hirviendo durante 10 minutos.",
+"Pasado el tiempo, escurrir la pasta.",
+"En un plato mezclar el tomate frito con ajo y orégano.",
+"Añadir la pasta con el tomate.",
+"Opcional poner queso por encima.",
+"Servir."],
+"category": 1,
+"ingredientLine":[
+{"ingredient":"macarrones","amount":"150"},
+{"ingredient":"tomate frito","amount":"100"},
+{"ingredient":"ajo","amount":"1"},
+{"ingredient":"orégano","amount":"1"},
+{"ingredient":"queso","amount":"50"}
+]
+}
+
+{"recipeName":"filetes de pollo empanados",
+"method":
+["Cortar los filetes.",
+"Pasar por huevo.",
+"Pasar por el pan rallado.",
+"Si quieres que el rebozado sea más grueso, repetir de nuevo el proceso del huevo y el pan.",
+"Freír en abundante aceite caliente o también pueden hacerse en el horno."],
+"category": 3,
+"ingredientLine":[
+{"ingredient":"pechuga de pollo","amount":"500"},
+{"ingredient":"huevo","amount":"100"},
+{"ingredient":"pan rallado","amount":"100"},
+{"ingredient":"aceite","amount":"200"}
+]
+}
+
+{"recipeName":"Patatas con choco",
+"method":
+["Cortar la cebolla y el ajo y sofreír.",
+"Añadir el pimiento verde cortado. Sofreír.",
+"Cortar las zanahorias en rodajas y añadir al sofrito.",
+"Añadir una cucharada de tomate frito",
+"Cuando todo esté un poco refrito, añadir los chocos cortados en tiras y sofreír.",
+"Añadir el vasito de vino y cocinar durante unos 5 minutos.",
+"Echar las patatas cortadas en trozos y remover.",
+"Añadir sal, pimienta y comino.",
+"Añadir agua hasta que las patatas se cubran y tapar la olla.",
+"Dejar cocinar durante 10 minutos cuando la olla empiece a girar.",
+"Abrir la olla y servir."],
+"category": 4,
+"ingredientLine":[
+{"ingredient":"patatas","amount":"500"},
+{"ingredient":"chocos","amount":"250"},
+{"ingredient":"zanahoria","amount":"120"},
+{"ingredient":"pimiento","amount":"75"},
+{"ingredient":"cebolla","amount":"150"},
+{"ingredient":"ajo","amount":"15"},
+{"ingredient":"agua","amount":"200"},
+{"ingredient":"sal","amount":"1"},
+{"ingredient":"pimienta","amount":"1"},
+{"ingredient":"comino","amount":"1"}
 ]
 }
 

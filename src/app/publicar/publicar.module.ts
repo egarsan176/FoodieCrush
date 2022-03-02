@@ -6,12 +6,14 @@ import { PublicarComponent } from './publicar.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ArchivoUploadComponent } from './archivo-upload/archivo-upload.component';
+import { AvisoComponent } from './aviso/aviso.component';
 
 
 @NgModule({
   declarations: [
     PublicarComponent,
-    ArchivoUploadComponent
+    ArchivoUploadComponent,
+    AvisoComponent
   ],
   imports: [
     CommonModule,

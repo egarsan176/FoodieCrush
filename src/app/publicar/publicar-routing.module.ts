@@ -7,9 +7,10 @@ const routes: Routes = [
 
   { path: '', component: PublicarComponent, canActivate: [AuthGuard] },
 
-  { path: 'ver', loadChildren: () => import('./ver-recetas/ver-recetas.module').then(m => m.VerRecetasModule) },
+  { path: 'misRecetas', loadChildren: () => import('./ver-recetas/ver-recetas.module').then(m => m.VerRecetasModule) }
 
-  { path: 'mostrar', loadChildren: () => import('./mostrar-receta/mostrar-receta.module').then(m => m.MostrarRecetaModule) }
+  // { path: 'mostrar', loadChildren: () => import('../mostrar-receta/mostrar-receta.module').then(m => m.MostrarRecetaModule) }
+
 ];
 
 @NgModule({

@@ -40,11 +40,11 @@ export class ArchivoUploadComponent implements OnInit {
             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
+              localStorage.setItem("imgNAME", file.name)
               this.message = event.body.message;
               this.fileInfos = this.uploadService.getFiles();
               this.mostrar = true;
-              localStorage.setItem("imgNAME", file.name)
-              console.log(JSON.stringify(this.currentFile))
+              //console.log(JSON.stringify(this.currentFile))  //devuelve {}
             }
           },
           error: (err: any) => {
@@ -64,8 +64,8 @@ export class ArchivoUploadComponent implements OnInit {
   }
 
   deleteFile(file: File){
-    this.currentFile = file;
-    this.uploadService.deleteFile(this.currentFile);
+    this.uploadService.deleteFile(file);
+    this.fileInfos = this.uploadService.getFiles();
   }
 
   

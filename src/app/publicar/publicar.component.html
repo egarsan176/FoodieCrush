@@ -1,13 +1,13 @@
 
-<div class="row p-1 my-3 justify-content-center">
-    <div class="text-center mb-2">
+<div class="row p-1 justify-content-center">
+    <div class="text-center">
         <h4>Aquí podrás publicar tu receta para compartirla con la comunidad Foodie y también consultar tus recetas ya publicadas</h4>
     </div>
 </div>
 
 
-<div class="row p-1 my-3 justify-content-center">
-    <div class="col-12 m-3">
+<div class="row my-2 justify-content-center">
+    <div class="col-12 m-1">
         <div class="m-3">
 
             <div class="card">
@@ -38,10 +38,9 @@
                                     <option value=1>Pasta</option>
                                     <option value=2>Arroz</option>
                                     <option value="3">Carne</option>
-                                    <option value="4">Guisos</option>
-                                    <option value="5">Salsas</option>                              
-                                    <option value="6">Postres</option>
-                                    <option value="7">Otro</option>
+                                    <option value="4">Pescados</option>                          
+                                    <option value="5">Postres</option>
+                                    <option value="6">Otros</option>
                                 </select>
                                 <label for="floatingSelectGrid">Selecciona una categoría para tu receta</label>
                             </div>
@@ -58,7 +57,7 @@
                             </div>
                         </div>
                         <div class="col-md">
-                            <label class="col-form-label">¿Qué cantidad?</label>
+                            <label class="col-form-label">¿Qué cantidad (en gramos)?</label>
                             <div class="input-group">
                                 <input class="form-control p-2" placeholder="Añadir cantidad en gramos" [(ngModel)]="cantidad"
                                         (keyup.enter)="agregarCantidad()"  name="amount" >
@@ -115,17 +114,38 @@
 
                     </div>
 
-                    <!-- <div class="mb-3 row">
-                        <label class="col-form-label" for="inputGroupFile01">Sube aquí la imagen que usaremos para acompañar tu receta:</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile01"  accept=".jpg, .png, .jpeg"/> 
-                        </div>
-                    </div> -->
-
-                    <button class="btn colorPurpleP mt-2" type="submit">GUARDAR</button>
+                    <button class="btn colorPurpleP mt-2" type="submit" ><app-aviso (outputEmiter)="eventChild($event)"></app-aviso></button>
 
                 </form>
+                <div *ngIf="aviso"> 
+                    <!-- Modal -->
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                      
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h4 class="modal-title">Aviso</h4>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                      
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                              {{msjHijo}}
+                            </div>
+                      
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                      
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                
             </div>
+
 
             <div class="card-footer colorYellowP m-2 text-center">  
                 <div class="text-sm text-muted">
@@ -141,7 +161,7 @@
 <div class="row p-1 my-3 justify-content-center">
     <div class="text-center mb-2">
         <p>¿Quieres ver tus recetas ya publicadas? Haz click en el botón que aparece aquí abajo</p>
-        <button class="btn colorPurpleP" routerLink="/publicar/ver">VER MIS RECETAS</button> <!-- aquí se carga la datatable -->
+        <button class="btn colorPurpleP" routerLink="/publicar/misRecetas">VER MIS RECETAS</button> <!-- aquí se carga la datatable -->
       </div>
 
 </div>

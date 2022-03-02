@@ -15,26 +15,26 @@
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
   
           <ul class=" nav navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/home"><strong>Inicio</strong></a>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <a class="nav-link"  routerLink="/home" ><i class="fas fa-home" aria-hidden="true"></i> Inicio</a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" routerLinkActive="active" routerLink="/recetas"><strong>Recetas</strong></a>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link"  routerLink="/recetas"><i class="fas fa-folder-open"></i> Recetario</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/publicar"><strong>Publicar</strong></a>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" routerLink="/publicar"><i class="fas fa-file-alt"></i> Publicar</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/about"><strong>Sobre mí</strong></a>
+            <!-- <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/about"><i class="fas fa-smile"></i> Sobre mí</a>
+            </li> -->
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link"  routerLink="/contacto"><i class="fas fa-address-card"></i> Contacto</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/contacto"><strong>Contacto</strong></a>
-            </li>
-            <li>
-              <a class="nav-link text-black " routerLinkActive="active" routerLink="/login"><i class="fas fa-user-alt"></i></a>
+            <li routerLinkActive="active">
+              <a class="nav-link"  routerLink="/login"><i class="fas fa-user-alt"></i> Entrar</a>
             </li>
             <li *ngIf="user">
-              <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-sign-out-alt"></i></button>
+              <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-sign-out-alt"></i> Salir</button>
             <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">

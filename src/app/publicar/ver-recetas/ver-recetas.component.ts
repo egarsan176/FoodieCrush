@@ -1,8 +1,5 @@
-import { AfterViewInit, Component, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { DataTableDirective } from 'angular-datatables';
+import {  Component, OnInit} from '@angular/core';
 import { Subject } from 'rxjs';
-import { Recipe } from 'src/app/interfaces/interface';
 import { RecipesService } from 'src/app/services/recipes.service';
 
 @Component({
@@ -20,7 +17,7 @@ export class VerRecetasComponent implements OnInit{
   dtTrigger: Subject<any> = new Subject<any>(); //como el recetario puede ser muy grande utilizamos el trigger para asegurarnos que los datos se extraen antes de la representación
 
 
-  constructor(private recipesService: RecipesService,  private router: Router) { }
+  constructor(private recipesService: RecipesService) { }
 
 
   ngOnInit(): void {
@@ -31,19 +28,26 @@ export class VerRecetasComponent implements OnInit{
        
         this.dtTrigger.next(data); 
         this.recetario=data;
-        console.log(data)
+        //console.log(data)
         //console.log(JSON.stringify(data))
       }),
       error: e =>{}
     })
 
+    // this.dtOptions = {
+    //   pagingType: 'full_numbers',
+    //   pageLength:5,  //para que muestre cinco resultados
+    //   lengthMenu: [5,10,20]  //// por qué no coge las propiedades
+    // }
+    // this.dtOptionsLang.url = "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json";
+   
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength:5,  //para que muestre cinco resultados
-      lengthMenu: [5,10,20]  //// por qué no coge las propiedades
-    }
-    this.dtOptionsLang.url = "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json";
-   
+      responsive: true,
+      language: {
+      url: 'http://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+      }
+      };
   }
 
 

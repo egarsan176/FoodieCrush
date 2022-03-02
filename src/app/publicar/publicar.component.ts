@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FileDB, IngredientLine, Recipe } from '../interfaces/interface';
 import { AccessService } from '../services/access.service';
 import Swal from 'sweetalert2';
-import { GeneratedFile } from '@angular/compiler';
 import { FileUploadService } from '../services/file-upload.service';
 
 @Component({
@@ -22,7 +21,8 @@ export class PublicarComponent implements OnInit {
   category: number =0;
 
   file!: FileDB;
-
+  aviso: boolean = false;
+  msjHijo: string = "";
   
   recipe: Recipe = {
     recipeName: '',
@@ -42,13 +42,13 @@ export class PublicarComponent implements OnInit {
   agregarIngrediente(){
     if(!this.ingredientes.includes(this.ingrediente)){
       this.ingredientes.push(this.ingrediente);
-      this.ingrediente="";
     }
   }
   
   //este método agrega una cantidad al auxiliar de cantidades
   agregarCantidad(){
     this.cantidades.push(this.cantidad);
+    this.ingrediente="";
     this.cantidad=0;
   }
 
@@ -100,6 +100,8 @@ export class PublicarComponent implements OnInit {
     this.uploadService.getFileByName().subscribe({
       next: (data =>{
         this.file = data;
+        console.log(data);
+        console.log(data.name)
       }),
       error: e => {
         console.log(e);
@@ -107,16 +109,25 @@ export class PublicarComponent implements OnInit {
     })
   }
 
+  eventChild(msj : string){
+    this.msjHijo = msj;
+  }
+
   //método para publicar la receta en la bbdd a través de una petición al servicio pasando el objeto receta
   publicar(){
     this.getFile();
+    
     //console.log(this.recipe)
     if(this.recipe.recipeName!="" && this.recipe.method.length>0 && this.recipe.category!=0 && this.recipe.ingredientLine.length>0){
+      this.recipe.file = this.file;
+      console.log(this.recipe.file)
 
       this.accessService.publicar(this.recipe)
       .subscribe({
         next: (data => {
+          this.aviso = true;
           console.log(data);
+          //window.location.reload();
           
           // this.recipe = {
           //   recipeName: '',
@@ -124,10 +135,10 @@ export class PublicarComponent implements OnInit {
           //   category: 0,
           //   ingredientLine: [],
           //   file: 
-          // }
+          // };
         }), 
         error: e => {
-          Swal.fire('Error', 'No se ha podido publicar tu receta. Inténtalo más tarde.', 'error');
+          Swal.fire('Error', 'No se puede publicar la receta. '+e.error.mensaje, 'error');
         }
       }
   
@@ -137,5 +148,6 @@ export class PublicarComponent implements OnInit {
     }
 
   }
+
 
 }
