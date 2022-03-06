@@ -14,6 +14,7 @@ export class ValidatorService {
     public passwordPattern: string = "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$";
 
 
+    //método que comprueba si los dos valores de la contraseña coinciden
     camposIguales( campo1: string, campo2: string ) {
 
         return ( formGroup: AbstractControl ): ValidationErrors | null => {

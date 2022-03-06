@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-aviso',
@@ -7,17 +7,19 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class AvisoComponent implements OnInit {
 
-  @Output() outputEmiter = new EventEmitter<string>();
+  @Input() opcion:string | undefined;
 
-  user = JSON.parse(<string>localStorage.getItem('user'));
+   // Indicamos que nuestro componente tendrá un eventemitter que regresa un string 
+  @Output() showOption = new EventEmitter<string>();     
 
-  constructor() { }
+  constructor(){}
 
-  ngOnInit(): void {
+  //MÉTODO que emite el evento hasta el padre
+  select():void{
+      this.showOption.emit(this.opcion);   // lo se que va a emitir es el string que tenga opción
   }
 
-  avisar(){
-    this.outputEmiter.emit(this.user.fullName + ", tu receta se ha publicado satisfactoriamente.") ;
+  ngOnInit(): void {
   }
 
 

@@ -35,9 +35,3 @@ export interface FileDB{
     data: number, 
     type: string
 }
-
-
-export interface IDemoNgComponentEventType {
-    cmd: string;
-    data: any;
-  }

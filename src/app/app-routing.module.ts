@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'publicar', loadChildren: () => import('./publicar/publicar.module').then(m => m.PublicarModule) },
   { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) },
   { path: 'contacto', loadChildren: () => import('./contacto/contacto.module').then(m => m.ContactoModule) },
-  { path: 'home', loadChildren: () => import('./app/home/home.module').then(m => m.HomeModule) },
+  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
   { path: 'mostrar', loadChildren:() => import('./mostrar-receta/mostrar-receta.module').then(m => m.MostrarRecetaModule)},
 
   {

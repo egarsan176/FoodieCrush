@@ -7,7 +7,9 @@ const routes: Routes = [
 
   { path: '', component: PublicarComponent, canActivate: [AuthGuard] },
 
-  { path: 'misRecetas', loadChildren: () => import('./ver-recetas/ver-recetas.module').then(m => m.VerRecetasModule) }
+  { path: 'misRecetas', loadChildren: () => import('./ver-recetas/ver-recetas.module').then(m => m.VerRecetasModule) },
+
+  { path: 'formulario', loadChildren: () => import('./mostrar-formu/mostrar-formu.module').then(m => m.MostrarFormuModule) }
 
   // { path: 'mostrar', loadChildren: () => import('../mostrar-receta/mostrar-receta.module').then(m => m.MostrarRecetaModule) }
 

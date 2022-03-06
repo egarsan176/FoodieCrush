@@ -10,6 +10,7 @@ import { AccessService } from '../services/access.service';
 })
 export class LoginComponent implements OnInit {
 
+  //PROPIEDADES de la vista
   email: string = '';
   password: string = '';
 
@@ -18,20 +19,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  //MÉTODO para iniciar sesión
+  // Nos suscribimos al método de login del servicio pasando el email y la contraseña,
+  // si el login es correcto, nos devuelve un token y accedemos a /publicar
+  // sino es correcto, devolvemos el mensaje de error de la API
   login(){
-    //me suscribo al login del servicio y si me devuelve un token lo almaceno en el localStorage
+    
     this.accessService.login(this.email, this.password)
     .subscribe({
       next: (data => {
 
         localStorage.setItem('token', data.access_token); 
-        this.accessService.getUsuario(); //para almacenar el usuario en el localStorage
-        //si el login es exitoso y me devuelve el token puedo navegar a /publicar
+        this.accessService.getUsuario(); //llamo a este método para almacenar el usuario en el localStorage
+        
         this.router.navigateByUrl('publicar');
+        
       }),
       error: e =>{
-        //para que devuelva si el error es del email o del password
-        //el mensaje viene de la API
         Swal.fire(
         'Error', e.error.mensaje, 'error');  
         

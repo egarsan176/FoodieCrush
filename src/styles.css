@@ -53,3 +53,24 @@
 .swal2-popup {
   background-color: #f9e79f !important;
 }
+
+/* PARA LA IMAGEN DE ERROR SI NO EXISTEN RECETAS */
+
+/*  en móviles  */
+@media screen and (max-width: 480px) {
+  #notFound {
+    width: 30%;
+  }
+}
+/* en tablet  */
+@media screen and (min-width: 481px) and (max-width: 846px) {
+  #notFound {
+    width: 25%;
+  }
+}
+/*  en pc  */
+@media screen and (min-width: 847px) and (max-width: 2100px) {
+  #notFound {
+    width: 20%;
+  }
+}

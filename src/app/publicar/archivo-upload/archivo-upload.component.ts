@@ -10,6 +10,7 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
 })
 export class ArchivoUploadComponent implements OnInit {
 
+  //PROPIEDADES
   selectedFiles?: FileList;
   currentFile?: File;
   progress = 0;
@@ -20,15 +21,15 @@ export class ArchivoUploadComponent implements OnInit {
   constructor(private uploadService: FileUploadService) { }
 
   ngOnInit(): void {
-    this.fileInfos = this.uploadService.getFiles();
+    this.fileInfos = this.uploadService.getFiles(); //cargo en el init los ficheros ya almacenados
   }
 
-  //MÉTODO que nos ayuda a obtener los Archivos seleccionados. 
+  //MÉTODO para obtener los archivos seleccionados. 
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
   }
 
-  //MÉTODO para cargar el archivo
+  //MÉTODO que se suscribe al upload() del servicio para subir una imagen
   upload(): void {
     this.progress = 0;
     if (this.selectedFiles) {
@@ -44,6 +45,7 @@ export class ArchivoUploadComponent implements OnInit {
               this.message = event.body.message;
               this.fileInfos = this.uploadService.getFiles();
               this.mostrar = true;
+              console.log(this.currentFile)
               //console.log(JSON.stringify(this.currentFile))  //devuelve {}
             }
           },
@@ -63,8 +65,9 @@ export class ArchivoUploadComponent implements OnInit {
     }
   }
 
+  //MÉTODO que se suscribe al deleteFile() del servicio para elminar una imagen
   deleteFile(file: File){
-    this.uploadService.deleteFile(file);
+    this.uploadService.deleteFile(file).subscribe;
     this.fileInfos = this.uploadService.getFiles();
   }
 

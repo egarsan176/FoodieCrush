@@ -5,14 +5,13 @@ import { PublicarRoutingModule } from './publicar-routing.module';
 import { PublicarComponent } from './publicar.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
-import { ArchivoUploadComponent } from './archivo-upload/archivo-upload.component';
 import { AvisoComponent } from './aviso/aviso.component';
+import { MostrarFormuComponent } from './mostrar-formu/mostrar-formu.component';
 
 
 @NgModule({
   declarations: [
     PublicarComponent,
-    ArchivoUploadComponent,
     AvisoComponent
   ],
   imports: [

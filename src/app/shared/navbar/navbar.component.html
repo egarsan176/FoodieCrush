@@ -26,33 +26,15 @@
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" routerLink="/about"><i class="fas fa-smile"></i> Sobre mí</a>
-            </li> -->
+            </li> 
             <li class="nav-item" routerLinkActive="active">
               <a class="nav-link"  routerLink="/contacto"><i class="fas fa-address-card"></i> Contacto</a>
-            </li>
+            </li>-->
             <li routerLinkActive="active">
               <a class="nav-link"  routerLink="/login"><i class="fas fa-user-alt"></i> Entrar</a>
             </li>
             <li *ngIf="user">
               <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-sign-out-alt"></i> Salir</button>
-            <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Cierre de Sesión</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        ¿Está seguro que quiere cerrar su sesión?
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn colorPinkP" data-bs-dismiss="modal">No</button>
-                        <button type="button" class="btn colorGreenP" data-bs-dismiss="modal" (click)="onlogout()">Sí</button>
-                      </div>
-                    </div>
-                  </div>
-                </div> 
             </li>
           </ul>
           
@@ -61,6 +43,24 @@
       </div>
       
     </nav> 
+<!-- Modal para cerrar sesión -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cierre de Sesión</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ¿Está seguro que quiere cerrar su sesión?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn colorPinkP" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn colorGreenP" data-bs-dismiss="modal" (click)="onlogout()">Sí</button>
+          </div>
+        </div>
+      </div>
+    </div> 
 <!--   
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">

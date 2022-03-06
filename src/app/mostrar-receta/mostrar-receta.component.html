@@ -1,22 +1,23 @@
-<div class="card mb-3 mt-4 mx-auto" style="width: 70%;">
+<div *ngIf="mostrar==true">
+
+
+<div class="card mb-3 mt-4 mx-auto border-0 text-center colorPinkP" style="width: 70%;" *ngIf="recipe != null && user!=null">
     <div class="row g-0">
       <div class="col-md-5">
-        <img src="" class="img-fluid rounded-start" alt="...">
+        <img src="{{img}}"  class="img-fluid img-responsive h-100" alt="...">
       </div>
-      <div class="col-md-7">
-        <div class="card-body text-center">
-          <p class="card-text"></p>
-          <p class="card-text"></p>
+      <div class="col-md-7 my-auto">
+        <div class="card-body px-auto">
           <p class="card-text"><strong>Nombre:</strong> {{recipe.recipeName.toUpperCase()}}</p>
           <p class="card-text"><strong>Categoría:</strong> {{recipe.category.name.toUpperCase()}}</p>
           <p class="card-text"><strong>Fecha de publicación:</strong> {{recipe.fechaBonita}}</p>
-          <p class="card-text"><strong>Publicada por:</strong></p>
+          <p class="card-text"><strong>Publicada por:</strong>{{user.username}}</p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="container mt-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="container mt-4 col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="recipe != null">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#ingredientes" type="button" role="tab" aria-controls="home" aria-selected="true">Ingredientes</button>
@@ -45,7 +46,8 @@
           <button class="btn colorPurpleP" (click)="back()">VOLVER</button> 
       </div>
 
-  </div>
+    </div>
   </div> 
 
   <app-scroll-to-top ubicacion="Recetario/{{recipe.recipeName.toUpperCase()}}"></app-scroll-to-top>
+</div>

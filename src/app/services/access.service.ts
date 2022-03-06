@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { AuthResponse, Recipe, Usuario } from '../interfaces/interface';
+import { AuthResponse, Usuario } from '../interfaces/interface';
 import { BehaviorSubject, Observable} from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -48,7 +48,7 @@ export class AccessService {
     return this.httpClient.get<AuthResponse>( url, { headers } )
   }
 
-  //MÉTODO para poder borrar el token del local Storage
+  //MÉTODO para cerrar sesion y borrar el token del local Storage
   logout(){
     localStorage.removeItem("token");
     localStorage.removeItem('user');
@@ -73,7 +73,7 @@ export class AccessService {
     return this.httpClient.post<AuthResponse>(url, body, {headers:opcionHeader});
   }
 
-  //MÉTODO para obtener un usuario
+  //MÉTODO para obtener un usuario a través del token
   getUsuario(){
 
     const url = `${this.urlBase}/user`; //la url de la api que contiene a los usuarios
@@ -95,22 +95,6 @@ export class AccessService {
       });
   }
 
-  //MÉTODO para publicar una receta en la bbdd
-  publicar(recipe: Recipe){
-
-    let token = this.getToken(); //localStorage.getItem('token');  recupero el token
-    let user = JSON.parse(<string>localStorage.getItem('user')) //transformo en json el string de user para poder acceder a sus propiedades
-    
-    const url = `${this.urlBase}/recipes/${user.id}`;
-    const body = recipe; //es la receta que se obtiene al rellenar el formulario de /publicar
-
-    const headers = new HttpHeaders({ //cabeceras necesarias para hacer la petición de tipo get y pasarle el token
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    })
-
-    return this.httpClient.post<Recipe>(url, body, {headers});
-  }
-
+ 
 
   }

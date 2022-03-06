@@ -19,6 +19,8 @@ export class ScrollToTopComponent implements OnInit {
   constructor(@Inject(DOCUMENT) private document: Document) {}
   
   @HostListener('window:scroll', [])
+
+  //método que hace que el botón aparezca en la página cuando se ha hecho scroll
   onWindowScroll(): void {
       if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
           this.windowScrolled = true;
@@ -27,6 +29,8 @@ export class ScrollToTopComponent implements OnInit {
           this.windowScrolled = false;
       }
   }
+
+  //método que nos lleva a la parte superior de la página al pinchar en el componente
   scrollToTop(): void {
       (function smoothscroll(): void {
           const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
