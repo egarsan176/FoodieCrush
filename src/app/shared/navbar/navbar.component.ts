@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthResponse, Usuario} from 'src/app/interfaces/interface';
 import { AccessService } from 'src/app/services/access.service';
 
 @Component({
@@ -8,24 +10,21 @@ import { AccessService } from 'src/app/services/access.service';
 })
 export class NavbarComponent implements OnInit {
 
-  @Input() isLogueado: boolean = false;
+  user!: Usuario | null;
 
-  constructor(private accessService: AccessService) { }
+  constructor(private accessService: AccessService) {
+    this.accessService.user.subscribe(x => this.user = x);
+   }
 
   ngOnInit(): void {
-    // this.isLogueado;
-    // console.log(this.isLogueado)
   }
 
 
+  //MÉTODO que llama al logout() del servicio para cerrar la sesión del usuario
   onlogout() {
     this.accessService.logout();
   }
 
-
-//  get isLogueado(){
-//    return this.accessService.checkIsLogueado();
-//  }
 
 
 

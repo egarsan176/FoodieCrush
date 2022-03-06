@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IngredientLine, Recipe } from '../interfaces/interface';
 
 @Component({
   selector: 'app-publicar',
@@ -7,53 +6,35 @@ import { IngredientLine, Recipe } from '../interfaces/interface';
   styleUrls: ['./publicar.component.css']
 })
 export class PublicarComponent implements OnInit {
-  
 
-  name: string = "";
-  ingrediente: string = "";
-  cantidad!: number;
-  paso:string ="";
-  ingredientes: string [] = [];
-  cantidades : number [] = [];
-  ingredientLine: IngredientLine[] = [];
 
-  recipe: Recipe = {
-    recipeName: '',
-    method: [],
-    category: '',
-    ingredientLine: []
-  }
+  //VARIABLES PARA EL USO DEL OUTPUT
+  seleccion = '';
+
+  opciones = [
+    {title : 'Publicar Receta'},
+    {title : 'Ver mis Recetas'}
+  ];
+
+  op1: boolean = false;
+  op2: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  agregarIngrediente(){
-    this.ingredientes.push(this.ingrediente);
-  }
-
-  agregarCantidad(){
-    this.cantidades.push(this.cantidad);
-  }
-
-  crearLinea(){
-    const nuevaLinea : IngredientLine = {
-      "ingredient": this.ingrediente,
-      "amount": this.cantidad
+  //MÉTODO que muestra el valor del componente hijo <app-aviso> y además hace que se muestre la opción seleccionada
+  addOption(response: string) {
+    this.seleccion = "Has elegido: " + response;      // Esta es la función que se va a ejecutar en el componente padre 
+    if(response =="Publicar Receta"){
+      this.op1 = true;
+      this.op2 = false;
+    }else if(response =="Ver mis Recetas"){
+      this.op2 = true;
+      this.op1 = false;
     }
-  
-    
   }
 
-  agregarPaso(){
-    this.recipe.method.push(this.paso);
-  }
-
-  eliminar(index: number){
-    this.recipe.ingredientLine.splice(index, 1);
-  }
-
-  publicar(){}
 
 }

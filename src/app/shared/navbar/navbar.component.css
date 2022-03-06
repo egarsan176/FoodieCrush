@@ -1,18 +1,14 @@
-/* para que el formulario del cuadro de búsqueda se adapte a las pantallas */
-@media screen and (min-width: 481px) and (max-width: 3000px) {
-  .searchAling {
-    position: absolute;
-    right: 2%;
-  }
-}
-
-.searchAling {
-  width: 20%;
-}
-
 .logo {
   width: 40%;
 }
 .navbar-brand {
   margin-right: 0 !important;
+}
+
+* {
+  font-size: 14px;
+}
+.active {
+  font-weight: bold;
+  background-color: #a9dfbf;
 }

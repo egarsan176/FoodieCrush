@@ -1,7 +1,7 @@
 <div class= "col-12">
  
   <!-- navbar-expand-sm indicar el tamaño a partir del cual la barra se mostrará de forma expandida -->
-  <nav class="navbar navbar-expand-sm colorYellowLightP navbar-dark py-0"> <!--py-0 para quitar el padding top-bottom que trae navbar por defecto-->
+  <nav class="navbar navbar-expand-sm colorYellowLightP navbar-light py-0"> <!--py-0 para quitar el padding top-bottom que trae navbar por defecto-->
       <div class="container-fluid">
   
         <a class="navbar-brand" href="#">
@@ -15,44 +15,26 @@
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
   
           <ul class=" nav navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link text-black" routerLinkActive="active"  routerLink="/home"><strong>Inicio</strong></a>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <a class="nav-link"  routerLink="/home" ><i class="fas fa-home" aria-hidden="true"></i> Inicio</a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link text-black" routerLinkActive="active" routerLink="/recetas"><strong>Recetas</strong></a>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link"  routerLink="/recetas"><i class="fas fa-folder-open"></i> Recetario</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-black" routerLinkActive="active" routerLink="/publicar"><strong>Publicar</strong></a>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" routerLink="/publicar"><i class="fas fa-file-alt"></i> Publicar</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-black" routerLinkActive="active" routerLink="/about"><strong>Sobre mí</strong></a>
+            <!-- <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/about"><i class="fas fa-smile"></i> Sobre mí</a>
+            </li> 
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link"  routerLink="/contacto"><i class="fas fa-address-card"></i> Contacto</a>
+            </li>-->
+            <li routerLinkActive="active">
+              <a class="nav-link"  routerLink="/login"><i class="fas fa-user-alt"></i> Entrar</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-black" routerLinkActive="active" routerLink="/contacto"><strong>Contacto</strong></a>
-            </li>
-            <li>
-              <a class="nav-link text-black " routerLinkActive="active" routerLink="/login"><i class="fas fa-user-alt"></i></a>
-            </li>
-            <li *ngIf="isLogueado">
-              <button class="btn colorPurpleP" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-sign-out-alt"></i>></button>
-            <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Cierre de Sesión</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        ¿Está seguro que quiere cerrar su sesión?
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn colorPinkP" data-bs-dismiss="modal">No</button>
-                        <button type="button" class="btn colorGreenP" data-bs-dismiss="modal" (click)="onlogout()">Sí</button>
-                      </div>
-                    </div>
-                  </div>
-                </div> 
+            <li *ngIf="user">
+              <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-sign-out-alt"></i> Salir</button>
             </li>
           </ul>
           
@@ -61,6 +43,24 @@
       </div>
       
     </nav> 
+<!-- Modal para cerrar sesión -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cierre de Sesión</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ¿Está seguro que quiere cerrar su sesión?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn colorPinkP" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn colorGreenP" data-bs-dismiss="modal" (click)="onlogout()">Sí</button>
+          </div>
+        </div>
+      </div>
+    </div> 
 <!--   
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -83,4 +83,5 @@
     </div>
   </div>
 </nav> --> 
+
 </div>

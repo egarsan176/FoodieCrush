@@ -18,12 +18,20 @@ export interface ErrorResponse{
 export interface Recipe{
     recipeName: string,
     method: string [],
-    category: string,
-    ingredientLine: IngredientLine[]
+    category: number,
+    ingredientLine: IngredientLine[],
+    file: FileDB
 
 }
+
 
 export interface IngredientLine{
     ingredient: string,
     amount: number
+}
+
+export interface FileDB{
+    name: string,
+    data: number, 
+    type: string
 }

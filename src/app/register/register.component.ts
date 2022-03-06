@@ -12,6 +12,7 @@ import { Usuario } from '../interfaces/interface';
 })
 export class RegisterComponent implements OnInit { 
 
+  //objeto del formulario
   user: Usuario = {
     fullName: '',
     username: '',
@@ -111,10 +112,12 @@ export class RegisterComponent implements OnInit {
     return this.miFormulario.get(campo)?.invalid && this.miFormulario.get(campo)?.touched;
   }
 
+  //MÉTODO que se suscribe al register() del servicio para registar un usuario nuevo
+  //si la suscripción es correcta, se almacena un nuevo usuario en la base de datos
   register(){
     //console.log(this.miFormulario.value);
     let user: Usuario = this.miFormulario.value
-    console.log(user)
+    //console.log(user)
 
     this.accessService.register(user).subscribe();  //hago la petición de registro
     //this.miFormulario.markAllAsTouched();

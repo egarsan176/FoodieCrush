@@ -34,8 +34,8 @@ import Swal from 'sweetalert2';
             }
             )
 
-            //si el token no es válido me redirije al home
-            this.router.navigate(['']); // es lo mismo que: this.router.navigateByUrl('home');
+            //si el token no es válido me redirije al login
+            this.router.navigate(['login']); // es lo mismo que: this.router.navigateByUrl('login');
             return of(false)
         })
       )
