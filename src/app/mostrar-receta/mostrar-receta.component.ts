@@ -58,7 +58,7 @@ export class MostrarRecetaComponent implements OnInit {
         this.user = data;
       },
       error: e =>{
-        console.log(e);
+        Swal.fire('Error', e.error.message, 'error')
       }
     })
   }
@@ -72,7 +72,7 @@ export class MostrarRecetaComponent implements OnInit {
         this.img = this.recipeService.obtenerImagen(data);
       },
       error: e =>{
-        console.log(e);
+        Swal.fire('Error', e.error.message, 'error')
       }
     })
   }

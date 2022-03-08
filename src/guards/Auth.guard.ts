@@ -24,7 +24,6 @@ import Swal from 'sweetalert2';
         }),
         catchError( e => {
           //si me devuelve error es que el token ha expirado
-          console.log(e.message);
             Swal.fire(  //devuelve el mensaje de la fakeAPi verificarToken
               {
               title: 'No tiene acceso a esta página',

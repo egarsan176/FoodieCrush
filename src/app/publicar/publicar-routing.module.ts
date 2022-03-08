@@ -11,7 +11,6 @@ const routes: Routes = [
 
   { path: 'formulario', loadChildren: () => import('./mostrar-formu/mostrar-formu.module').then(m => m.MostrarFormuModule) }
 
-  // { path: 'mostrar', loadChildren: () => import('../mostrar-receta/mostrar-receta.module').then(m => m.MostrarRecetaModule) }
 
 ];
 
