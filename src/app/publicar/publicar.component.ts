@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicarComponent implements OnInit {
 
+  user = JSON.parse(<string>localStorage.getItem('user'));
 
   //VARIABLES PARA EL USO DEL OUTPUT
   seleccion = '';

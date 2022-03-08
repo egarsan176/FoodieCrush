@@ -2,6 +2,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FileUploadService } from 'src/app/services/file-upload.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-archivo-upload',
@@ -45,12 +46,12 @@ export class ArchivoUploadComponent implements OnInit {
               this.message = event.body.message;
               this.fileInfos = this.uploadService.getFiles();
               this.mostrar = true;
-              console.log(this.currentFile)
+              //console.log(this.currentFile)
               //console.log(JSON.stringify(this.currentFile))  //devuelve {}
             }
           },
           error: (err: any) => {
-            console.log(err);
+            Swal.fire('Error', err.error.message, 'error')
             this.progress = 0;
             if (err.error && err.error.message) {
               this.message = err.error.message;

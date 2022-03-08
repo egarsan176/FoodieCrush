@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FileDB, IngredientLine, Recipe } from 'src/app/interfaces/interface';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { RecipesService } from 'src/app/services/recipes.service';
@@ -32,7 +33,8 @@ export class MostrarFormuComponent implements OnInit {
   
 
   constructor(private recipeService: RecipesService,
-    private uploadService: FileUploadService) { }
+    private uploadService: FileUploadService,
+    private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -124,8 +126,9 @@ export class MostrarFormuComponent implements OnInit {
                 text: "Su receta se ha publicado con éxito",
                 icon: 'info',
                 confirmButtonText: "Aceptar",
-            }).then(this.actualizar);
-              
+            })//.then(this.actualizar);
+            
+            this.route.navigateByUrl('publicar');
              
             }), 
             error: e => {

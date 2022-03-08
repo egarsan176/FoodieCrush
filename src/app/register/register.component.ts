@@ -4,6 +4,8 @@ import { ValidatorService } from '../services/validator.service';
 import { EmailValidatorService } from '../services/email-validator.service';
 import { AccessService } from '../services/access.service';
 import { Usuario } from '../interfaces/interface';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -93,7 +95,8 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private accessService: AccessService,
               private validatorService: ValidatorService,
-              private emailValidator : EmailValidatorService ) { }
+              private emailValidator : EmailValidatorService,
+              public router: Router ) { }
 
   ngOnInit(): void {
     //para que cada vez que se cargue la página el formulario no contenga datos anteriores
@@ -113,23 +116,40 @@ export class RegisterComponent implements OnInit {
   }
 
   //MÉTODO que se suscribe al register() del servicio para registar un usuario nuevo
-  //si la suscripción es correcta, se almacena un nuevo usuario en la base de datos
+  //si la suscripción es correcta, se almacena un nuevo usuario en la base de datos y nos lleva a la página /publicar
   register(){
     //console.log(this.miFormulario.value);
     let user: Usuario = this.miFormulario.value
     //console.log(user)
 
-    this.accessService.register(user).subscribe();  //hago la petición de registro
+    this.accessService.register(user)//hago la petición de registro
+    .subscribe({
+      next: (data => {
+
+        localStorage.setItem('token', data.access_token); 
+        this.accessService.getUsuario(); //llamo a este método para almacenar el usuario en el localStorage
+        
+            //borro los datos al hacer submit
+        this.miFormulario.reset({
+          fullName: '',
+          email: '',
+          username: '',
+          password: '',
+          condiciones: false
+        })
+
+        this.router.navigateByUrl('publicar');
+        
+      }),
+      error: e =>{
+        Swal.fire(
+        'Error', e.error.mensaje, 'error');  
+        
+      }
+    })  
     //this.miFormulario.markAllAsTouched();
 
-    //borro los datos al hacer submit
-    this.miFormulario.reset({
-      fullName: '',
-      email: '',
-      username: '',
-      password: '',
-      condiciones: false
-    })
+
    }
 
 
