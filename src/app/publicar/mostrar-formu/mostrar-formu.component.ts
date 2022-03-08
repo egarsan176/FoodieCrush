@@ -127,8 +127,8 @@ export class MostrarFormuComponent implements OnInit {
                 icon: 'info',
                 confirmButtonText: "Aceptar",
             })//.then(this.actualizar);
-            
             this.route.navigateByUrl('publicar');
+
              
             }), 
             error: e => {
