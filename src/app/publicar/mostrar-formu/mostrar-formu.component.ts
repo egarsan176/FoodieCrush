@@ -124,7 +124,7 @@ export class MostrarFormuComponent implements OnInit {
                 text: "Su receta se ha publicado con éxito",
                 icon: 'info',
                 confirmButtonText: "Aceptar",
-            }).then(this.actualizar);
+            })//.then(this.actualizar);
               
              
             }), 
