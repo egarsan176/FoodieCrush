@@ -22,7 +22,8 @@ export class EmailValidatorService implements AsyncValidator {
     //modificación método validar Joaquín petición asíncrona para comprobar que el email existe una vez que ha escrito el campo completo y salta a otro campo
     validate(control: AbstractControl): Observable<ValidationErrors | null> {
       const email = control.value; //recupero el valor del campo email
-      return this.checkEmail(email).pipe(
+      return this.checkEmail(email)
+      .pipe(
         map (resp => {
           if(resp.email != null){
              return {emailTomado: true};
@@ -30,11 +31,25 @@ export class EmailValidatorService implements AsyncValidator {
            return null;
           }
         }),
-        catchError (err => {
-           return of(null);
-        })
+       
       );
      }
+
+    //  validate(control: AbstractControl): Observable<ValidationErrors | null> {
+    //   const email = control.value; //recupero el valor del campo email
+    //   return this.checkEmail(email).pipe(
+    //     map (resp => {
+    //       if(resp.email != null){
+    //          return {emailTomado: true};
+    //       }else{
+    //        return null;
+    //       }
+    //     }),
+    //     catchError (err => {
+    //        return of(null);
+    //     })
+    //   );
+    //  }
 
   //Aquí se hace la petición a la BBDD para comprobar si el email existe
   checkEmail(email:string){

@@ -126,7 +126,7 @@ export class MostrarFormuComponent implements OnInit {
                 text: "Su receta se ha publicado con éxito",
                 icon: 'info',
                 confirmButtonText: "Aceptar",
-            })//.then(this.actualizar);
+            })
             this.route.navigateByUrl('publicar');
 
              
@@ -154,11 +154,7 @@ export class MostrarFormuComponent implements OnInit {
   back(){
     history.back();
   }
-   
-  //MÉTODO para actualizar la página y que el formulario se quede en blanco (ARREGLAR EN FUTURO recipe.reset())
-  actualizar(){
-    window.location.reload();
-  }
+
 
 
 }
