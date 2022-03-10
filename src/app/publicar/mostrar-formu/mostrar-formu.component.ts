@@ -126,8 +126,12 @@ export class MostrarFormuComponent implements OnInit {
                 text: "Su receta se ha publicado con éxito",
                 icon: 'info',
                 confirmButtonText: "Aceptar",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.route.navigateByUrl('publicar');
+              } 
             })
-            this.route.navigateByUrl('publicar');
+            
 
              
             }), 

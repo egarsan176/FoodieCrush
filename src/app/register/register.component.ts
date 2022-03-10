@@ -137,8 +137,18 @@ export class RegisterComponent implements OnInit {
           password: '',
           condiciones: false
         })
+        Swal.fire({
+          title: 'Ya forma parte de la familia FoodieCrush',
+          icon: 'success',
+          confirmButtonText: 'Acceder',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigateByUrl('publicar');
+          } 
+        })
 
-        this.router.navigateByUrl('publicar');
+
+       
         
       }),
       error: e =>{

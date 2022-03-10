@@ -12,11 +12,11 @@
           <p class="text-muted text-sm mb-1 d-none d-md-block d-sm-block">Sabemos que estás impaciente por compartir tus nuevos descubrimientos culinarios con la comunidad ... ¡Adelante cocinillas!</p>
           <form (ngSubmit)="login()">
             <div class="form-floating mb-3">
-              <input class="form-control" id="floatingInput" type="email" [(ngModel)]="email" placeholder="email" name="email" required email>
+              <input class="form-control" id="floatingInput" type="email" [(ngModel)]="email" placeholder="email" name="email" email aria-required="true">
               <label for="floatingInput">Email</label>
             </div>
             <div class="form-floating mb-3">
-              <input class="form-control" id="floatingPassword" type="password" [(ngModel)]="password" placeholder="Password" name="password" required>
+              <input class="form-control" id="floatingPassword" type="password" [(ngModel)]="password" placeholder="Password" name="password" aria-required="true">
               <label for="floatingPassword">Password</label>
             </div>
             <div class="form-check mb-3">
@@ -41,4 +41,5 @@
 </div>
 
 <app-scroll-to-top ubicacion="Inicio Sesión"></app-scroll-to-top>
+<app-font-size></app-font-size>
 

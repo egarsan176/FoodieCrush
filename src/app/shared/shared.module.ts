@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
+import { FontSIZEComponent } from './font-size/font-size.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    ScrollToTopComponent
+    ScrollToTopComponent,
+    FontSIZEComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
   ],
   exports: [
     NavbarComponent,   //para usar el componente fuera del módulo shared (para colocarlo en el app-component)
-    ScrollToTopComponent
+    ScrollToTopComponent,
+    FontSIZEComponent
   ]
 })
 export class SharedModule { }

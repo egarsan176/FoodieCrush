@@ -10,6 +10,8 @@ import { AccessService } from 'src/app/services/access.service';
 })
 export class NavbarComponent implements OnInit {
 
+  
+
   user!: Usuario | null;
 
   constructor(private accessService: AccessService) {
@@ -24,6 +26,7 @@ export class NavbarComponent implements OnInit {
   onlogout() {
     this.accessService.logout();
   }
+
 
 
 
