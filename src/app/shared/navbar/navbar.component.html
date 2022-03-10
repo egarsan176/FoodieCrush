@@ -16,13 +16,13 @@
   
           <ul class=" nav navbar-nav mr-auto">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-              <a class="nav-link"  routerLink="/home" ><i class="fas fa-home" aria-hidden="true"></i> Inicio</a>
+              <a class="nav-link"  routerLink="/home" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"><i class="fas fa-home" aria-hidden="true"></i> Inicio</a>
             </li>
             <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link"  routerLink="/recetas"><i class="fas fa-folder-open"></i> Recetario</a>
+              <a class="nav-link"  routerLink="/recetas" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"><i class="fas fa-folder-open"></i> Recetario</a>
             </li>
             <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" routerLink="/publicar"><i class="fas fa-file-alt"></i> Publicar</a>
+              <a class="nav-link" routerLink="/publicar" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"><i class="fas fa-file-alt"></i> Publicar</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" routerLink="/about"><i class="fas fa-smile"></i> Sobre mí</a>
@@ -31,7 +31,7 @@
               <a class="nav-link"  routerLink="/contacto"><i class="fas fa-address-card"></i> Contacto</a>
             </li>-->
             <li routerLinkActive="active">
-              <a class="nav-link"  routerLink="/login"><i class="fas fa-user-alt"></i> Entrar</a>
+              <a class="nav-link"  routerLink="/login" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"><i class="fas fa-user-alt"></i> Entrar</a>
             </li>
             <li *ngIf="user">
               <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-sign-out-alt"></i> Salir</button>

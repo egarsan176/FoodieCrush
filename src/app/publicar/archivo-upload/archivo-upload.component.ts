@@ -67,6 +67,7 @@ export class ArchivoUploadComponent implements OnInit {
   }
 
   //MÉTODO que se suscribe al deleteFile() del servicio para elminar una imagen
+  //no se usa todavía
   deleteFile(file: File){
     this.uploadService.deleteFile(file).subscribe;
     this.fileInfos = this.uploadService.getFiles();
