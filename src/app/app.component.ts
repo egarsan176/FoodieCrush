@@ -10,6 +10,8 @@ import { AccessService } from './services/access.service';
 export class AppComponent {
   title = 'FoodieCrush';
 
+ 
+
   //explicación stackoverflow 
   
   //Te deberías subscribir en el ngOnInit, o en el constructor, yo la función que uso para detectar los
@@ -48,4 +50,6 @@ export class AppComponent {
   // ngOnDestroy() {
   //   this.isSubscribe?.unsubscribe();
   // }
+
+
 }

@@ -31,8 +31,17 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem('token', data.access_token); 
         this.accessService.getUsuario(); //llamo a este método para almacenar el usuario en el localStorage
+
+        Swal.fire({
+          title: 'Sesión Iniciada',
+          icon: 'success',
+          confirmButtonText: 'Acceder',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigateByUrl('publicar');
+          } 
+        })
         
-        this.router.navigateByUrl('publicar');
         
       }),
       error: e =>{
