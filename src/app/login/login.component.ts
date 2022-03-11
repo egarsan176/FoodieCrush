@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         }).then((result) => {
           if (result.isConfirmed) {
             this.router.navigateByUrl('publicar');
+            //this.router.navigate(['/publicar' ], {queryParams: {ocultar: true}}); PRUEBAS OCULTAR LOG OUT
           } 
         })
         
