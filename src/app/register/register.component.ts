@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ValidatorService } from '../services/validator.service';
 import { EmailValidatorService } from '../services/email-validator.service';
 import { AccessService } from '../services/access.service';
@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
     //para comprobar que la contraseña sea la misma en los dos campos
     validators: [ this.validatorService.camposIguales('password','password2') ]
   });
+
 
   //mensajes para el error del campo email
   get emailErrorMsg(): string {   
@@ -101,12 +102,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     //para que cada vez que se cargue la página el formulario no contenga datos anteriores
     this.miFormulario.reset({
-      fullName: '',
-      email: '',
-      username: '',
-      password: '',
+      ...this.user,
       condiciones: false
     })
+
+    this.miFormulario.valueChanges.subscribe( ({ condiciones, ...rest }) => {
+      this.user = rest;
+    })
+    
 
   }
 
@@ -115,51 +118,73 @@ export class RegisterComponent implements OnInit {
     return this.miFormulario.get(campo)?.invalid && this.miFormulario.get(campo)?.touched;
   }
 
+    //MÉTODO que me dice qué campos del formulario son inválidos para saber dónde hay errores
+    public findInvalidControlsRecursive(formToInvestigate:FormGroup|FormArray):string[] {
+      var invalidControls:string[] = [];
+      let recursiveFunc = (form:FormGroup|FormArray) => {
+        Object.keys(form.controls).forEach(field => { 
+          const control = form.get(field);
+          if (control?.invalid) invalidControls.push(field);
+          if (control instanceof FormGroup) {
+            recursiveFunc(control);
+          } else if (control instanceof FormArray) {
+            recursiveFunc(control);
+          }        
+        });
+      }
+      recursiveFunc(formToInvestigate);
+     
+      return invalidControls;
+    }
+
   //MÉTODO que se suscribe al register() del servicio para registar un usuario nuevo
   //si la suscripción es correcta, se almacena un nuevo usuario en la base de datos y nos lleva a la página /publicar
-  register(){
-    //console.log(this.miFormulario.value);
-    let user: Usuario = this.miFormulario.value
-    //console.log(user)
+  async register(){
+    //console.log(this.findInvalidControlsRecursive(this.miFormulario));
+    
+    this.miFormulario.markAllAsTouched();
 
-    this.accessService.register(user)//hago la petición de registro
-    .subscribe({
-      next: (data => {
+    if(this.miFormulario.valid){
+      let user: Usuario = this.miFormulario.value
 
-        localStorage.setItem('token', data.access_token); 
-        this.accessService.getUsuario(); //llamo a este método para almacenar el usuario en el localStorage
-        
-            //borro los datos al hacer submit
-        this.miFormulario.reset({
-          fullName: '',
-          email: '',
-          username: '',
-          password: '',
-          condiciones: false
-        })
-        Swal.fire({
-          title: 'Ya forma parte de la familia FoodieCrush',
-          icon: 'success',
-          confirmButtonText: 'Acceder',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.router.navigateByUrl('publicar');
-          } 
-        })
-
-
-       
-        
-      }),
-      error: e =>{
-        Swal.fire(
-        'Error', e.error.mensaje, 'error');  
-        
-      }
-    })  
-
-
-   }
-
+      this.accessService.register(user)//hago la petición de registro
+      .subscribe({
+        next: (data => {
+  
+          localStorage.setItem('token', data.access_token); 
+          this.accessService.getUsuario(); //llamo a este método para almacenar el usuario en el localStorage
+          
+              //borro los datos al hacer submit
+          this.miFormulario.reset({
+            fullName: '',
+            email: '',
+            username: '',
+            password: '',
+            condiciones: false
+          })
+          Swal.fire({
+            title: 'Ya forma parte de la familia FoodieCrush',
+            icon: 'success',
+            confirmButtonText: 'Acceder',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigateByUrl('publicar');
+            } 
+          })
+  
+          
+        }),
+        error: e =>{
+          Swal.fire(
+          'Error', e.error.mensaje, 'error');  
+          
+        }
+      })  
+  
+  
+     }
+  
+    }
+   
 
 }
